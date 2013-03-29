@@ -82,25 +82,21 @@
 							</td>
 
 						</tr>
-						<tr>
+						
+						<?php if(isset($records)) : foreach($records as $row) : ?>
+							<tr>
+								<td><?php echo $row->semester;?></td>
+								<td><?php echo $row->curriculum_year;?></td>
+								<td class="">
+									<a id="<?php echo $row->userid;?>" href="" class="pull-right"><i class="icon-trash"></i></a>
+									<a id="<?php echo $row->userid;?>" href="" class="pull-right"><i class="icon-pencil"></i></a>	
+								</td>
+							</tr>
+							<?php endforeach;?>
+							<?php else: ?>
 
-							<td>
-								Sample
-
-							</td>
-							<td>
-								Sample
-							</td>
-							<td class="">
-								<a href="" class="pull-right"><i class="icon-trash"></i></a>
-								<a href="" class="pull-right"><i class="icon-pencil"></i></a>
-								
-							</td>
-
-						</tr>
-
-
-
+						<?php endif; ?>
+						
 					</table>
 				</div>
 
@@ -182,4 +178,3 @@
 		</div>
 		<!-- Add Semester Modal -->
 
-		

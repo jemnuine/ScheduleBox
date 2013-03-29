@@ -16,6 +16,8 @@ class Semester extends CI_Controller {
         //check kung naka-login
 		if($this->session->userdata('is_logged_in')) {
 
+            
+
 			$data = array (
 				'current_user' => $this->session->userdata('displayname'),
 				'current_username' => $this->session->userdata('username'),
@@ -23,6 +25,12 @@ class Semester extends CI_Controller {
 				'add_sem_error_action' => $add_sem_error_action
 
 			);
+
+            $this->load->model('schedule_model');
+            
+            if($query = $this->schedule_model->list_semester()) {
+                $data['records'] = $query;
+            }
 
 			$this->load->view('includes/nocache');
 	        $this->load->view('includes/header2');

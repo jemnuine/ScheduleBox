@@ -12,6 +12,11 @@ class Schedule_model extends CI_Model {
         return;
     }
 
+    public function list_semester() {
+        $query = $this->db->query('SELECT * FROM curriculum WHERE userid='.$this->session->userdata('userid'));
+        return $query->result();
+    }
+
     public function update_pass() {
         $this->db->where('');
     }
