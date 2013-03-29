@@ -66,30 +66,14 @@
 							
 									
 						</thead>
-						<tr>
 
-							<td>
-								Sample
-
-							</td>
-							<td>
-								Sample
-							</td>
-							<td class="">
-								<a href="" class="pull-right"><i class="icon-trash"></i></a>
-								<a href="" class="pull-right"><i class="icon-pencil"></i></a>
-								
-							</td>
-
-						</tr>
-						
 						<?php if(isset($records)) : foreach($records as $row) : ?>
 							<tr>
 								<td><?php echo $row->semester;?></td>
 								<td><?php echo $row->curriculum_year;?></td>
 								<td class="">
-									<a id="<?php echo $row->userid;?>" href="" class="pull-right"><i class="icon-trash"></i></a>
-									<a id="<?php echo $row->userid;?>" href="" class="pull-right"><i class="icon-pencil"></i></a>	
+									<a id="<?php echo $row->curriculum_id;?>" href="" class="pull-right"><i class="icon-trash"></i></a>
+									<a id="<?php echo $row->curriculum_id;?>" href="" class="pull-right"><i class="icon-pencil"></i></a>	
 								</td>
 							</tr>
 							<?php endforeach;?>
@@ -105,6 +89,7 @@
 						<div class="bread">
 							<i class="icon-check icon-white"></i> Manage Entries
 						</div>
+
 						<div class="well">
 					        <ul class="nav nav-list">
 					          <!--<li class="nav-header">Manage Schedule</li>-->
@@ -177,4 +162,6 @@
 			</form>
 		</div>
 		<!-- Add Semester Modal -->
+
+		
 

@@ -27,7 +27,7 @@ class Semester extends CI_Controller {
 			);
 
             $this->load->model('schedule_model');
-            
+
             if($query = $this->schedule_model->list_semester()) {
                 $data['records'] = $query;
             }
@@ -88,6 +88,12 @@ class Semester extends CI_Controller {
                 'add_sem_error_action' => $add_sem_error_action
             );
 
+            $this->load->model('schedule_model');
+
+            if($query = $this->schedule_model->list_semester()) {
+                $data['records'] = $query;
+            }
+            
 			$this->load->view('includes/nocache');
 			$this->load->view('includes/header2');
     		$this->load->view('semester_view', $data);
