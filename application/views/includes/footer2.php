@@ -38,7 +38,7 @@
 			});
 
 			$('.dropdown-toggle').dropdown();
-			
+			<?php if(!is_null($add_sem_error_action)) echo $add_sem_error_action;?> 
 		</script>
 	</body>
 </html>

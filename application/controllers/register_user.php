@@ -14,6 +14,7 @@ class Register_User extends CI_Controller {
         $this->form_validation->set_rules('regconfirm','Confirm Password','trim|required|matches[regpassword]'); 
 
         if($this->form_validation->run() == TRUE) {
+            
             $data = array (
                 'username' => $this->input->post('regusername'),
                 'password' => do_hash($this->input->post('regpassword'), 'md5'),

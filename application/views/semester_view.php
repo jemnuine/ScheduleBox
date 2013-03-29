@@ -148,7 +148,7 @@
 			<!-- Modal Header -->
 			<?php if(!is_null($add_sem_error_msg)) echo $add_sem_error_msg;?>  
 			<br/>
-			<form action='<?php echo base_url();?>index.php/' method='post' name='register'>
+			<form action='<?php echo base_url();?>index.php/semester/add_semester' method='post' name='register'>
 				<!-- Modal Content -->
 				<table cellpadding="0" align=center>
 					<tr>
@@ -159,7 +159,7 @@
 					<tr>
 						<td>Year: </td>
 						<td>&nbsp;</td>
-						<td><input type='text' name='addyear' id='addyear' size='25' /></td>
+						<td><input type='text' name='addyear' id='addyear' size='25'/></td>
 					</tr>
 					
 				</table>
@@ -181,3 +181,5 @@
 			</form>
 		</div>
 		<!-- Add Semester Modal -->
+
+		
