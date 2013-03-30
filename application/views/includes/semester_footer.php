@@ -32,7 +32,8 @@
 			});
 
 			$('.dropdown-toggle').dropdown();
-			<?php if(!is_null($add_sem_error_action)) echo $add_sem_error_action;?>	
+
+			
 
 			$(document).ready(function() { 
 			  	$("#time").load("<?php echo base_url();?>addons/now.php");
@@ -53,8 +54,14 @@
 			        });
 
 			        request.done(function (response, textStatus, jqXHR){
-				        
+				        $('#modalEditSemester').modal('show');
+						var temp = new Array();
+						temp = response.split("*");
+				       	$('#editsemester').val(temp[0]);
+				       	$('#edityear').val(temp[1]);
+
 				    });
+				    <?php if(!is_null($add_sem_error_action)) echo $add_sem_error_action;?>	
 			    });
 			
 		</script>

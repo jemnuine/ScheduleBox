@@ -10,7 +10,8 @@ class Semester extends CI_Controller {
  	public function index (
 	 		$add_sem_error_msg = NULL, 
 	 		$add_sem_error_action = NULL, 
-	 		$reg_error_msg = NULL
+	 		$reg_error_msg = NULL,
+            $semester = NULL
  		) {
 
         //check kung naka-login
@@ -22,7 +23,8 @@ class Semester extends CI_Controller {
 				'current_user' => $this->session->userdata('displayname'),
 				'current_username' => $this->session->userdata('username'),
 				'add_sem_error_msg' => $add_sem_error_msg,
-				'add_sem_error_action' => $add_sem_error_action
+				'add_sem_error_action' => $add_sem_error_action,
+                'semester' => NULL
 
 			);
 
@@ -64,6 +66,7 @@ class Semester extends CI_Controller {
             $this->schedule_model->add_semester($data);
 
             $data = array (
+                'semester' => NULL,
                 'current_user' => $this->session->userdata('displayname'),
                 'current_username' => $this->session->userdata('username'),
             	'add_sem_error_msg' => NULL,
@@ -80,6 +83,7 @@ class Semester extends CI_Controller {
             $add_sem_error_action = "$('#modalAddSemester').modal('show');";
 
             $data = array (
+                'semester' => NULL,
                 'current_user' => $this->session->userdata('displayname'),
                 'current_username' => $this->session->userdata('username'),
                 'add_sem_error_msg' => $add_sem_error_msg,
@@ -102,57 +106,57 @@ class Semester extends CI_Controller {
 
     public function list_edit_semester (
             $add_sem_error_msg = NULL, 
-            $add_sem_error_action = NULL, 
+            $add_sem_error_action = "$('#modalEditSemester').modal('show');", 
             $reg_error_msg = NULL
+
         ) {
 
         $data = array (
                 'semester' => $this->input->post('addsemester'),
                 'curriculum_year' => $this->input->post('addyear'),
                 'userid' => $this->session->userdata('userid')
+
                 
             );
 
 
         $this->load->model('schedule_model');
+        //kinuha lang ung curriculum id galing sa view
+        $curriculum_id = $this->input->post('dataid');
 
         //check kung ajax request
         if($this->input->post('ajax')) {
-            //kinuha lang ung curriculum id galing sa view
-            $curriculum_id = $this->input->post('dataid');
             
-            $add_sem_error_action = "$('#modalEditSemester').modal('show');"; //ni-recycle ko lng ung sa addsem na modal trigger
 
+            //ni-recycle ko lng ung sa addsem na modal trigger
+            $add_sem_error_action = "$('#modalEditSemester').modal('show');"; 
 
-            //i-query ung records na may additional na WHERE condition, curriculum
-            $query = $this->schedule_model->list_semester($curriculum_id);
-
-            foreach ($query->result() as $row)
-            {
-                $data['semester'] = $row->semester;
-                $data['curriculum_year'] = $row->curriculum_year;
-            }
-
-            $this->session->set_userdata($data);
+            $query = $this->schedule_model->get_semester($curriculum_id);
+            $query2 = $this->schedule_model->get_year($curriculum_id);
 
             $data = array (
-                'semester' => $this->session->userdata('semester'),
-                'curriculum_year' => $this->session->userdata('curriculum_year'),
                 'current_user' => $this->session->userdata('displayname'),
                 'current_username' => $this->session->userdata('username'),
                 'add_sem_error_msg' => $add_sem_error_msg,
-                'add_sem_error_action' => $add_sem_error_action
-
+                'add_sem_error_action' => $add_sem_error_action,
+                'sem' => $query,
+                'year' => $query2
+                
             );
-
-            $this->load->view('includes/nocache');
+            
+            echo implode('', $data['sem']);
+            echo '*';
+            echo implode('', $data['year']);
+           /* $this->load->view('includes/nocache');
             $this->load->view('includes/header2');
             $this->load->view('semester_view', $data);
-            $this->load->view('includes/semester_footer', $data);
+            $this->load->view('includes/semester_footer', $data);*/
 
 
         } else {
-            echo '2';
+            
+            $this->schedule_model->update_semester($curriculum_id);
+            redirect(base_url().'index.php/semester');
         }
 
     }
