@@ -67,7 +67,7 @@
 			});
 
 			$("#triggerdelete").click(function() {
-		        window.location.href = "<?php echo base_url();?>index.php/semester/delete_department/" + deleteid;				    	
+		        window.location.href = "<?php echo base_url();?>index.php/departments/delete_department/" + deleteid;				    	
 			});
 
 			$(".delall").click(function() {
@@ -76,7 +76,7 @@
 			});
 
 			$("#triggerdelall").click(function() {
-		        window.location.href = "<?php echo base_url();?>index.php/semester/delete_all_department";				    	
+		        window.location.href = "<?php echo base_url();?>index.php/departments/delete_all_department";				    	
 			});
 			
 			<?php if(!is_null($add_dept_error_action)) echo $add_dept_error_action;?>

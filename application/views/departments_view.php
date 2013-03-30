@@ -52,7 +52,7 @@
 					<b class="pull-right">&nbsp;</b>
 					<button id="addbutton" class="btn btn-success" type="button"><i class="icon-plus icon-white"></i> New</button>
 					<b class="pull-right">&nbsp;</b>
-					<button class="btn btn-danger pull-right" type="button"><i class="icon-remove icon-white"></i> Delete All</button>
+					<button class="delall btn btn-danger pull-right" type="button"><i class="icon-remove icon-white"></i> Delete All</button>
 					<table class="table table-striped">
 						<thead>
 							<td>

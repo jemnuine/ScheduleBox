@@ -174,7 +174,7 @@ class Departments extends CI_Controller {
     public function delete_department ($id = NULL) {
 
         $this->load->model('schedule_model');
-        $this->schedule_model->delete_delete($id);
+        $this->schedule_model->delete_department($id);
         redirect(base_url().'index.php/departments');
         return;
     }
