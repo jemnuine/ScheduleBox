@@ -16,6 +16,7 @@
 	    <script type="text/javascript" src="<?php echo base_url();?>scripts/bootstrap-typeahead.js"></script>
 	    <script type="text/javascript" src="<?php echo base_url();?>scripts/bootstrap-affix.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>scripts/time.js"></script>
+
 		<script>
 			$("#addbutton").click(function() {
 				$('#modalAddSemester').modal('show');
@@ -30,19 +31,32 @@
 						
 			});
 
-			$(".editbutton").click(function() {
-				$('#modalEditSemester').modal('show');
-		
-			});
+			$('.dropdown-toggle').dropdown();
+			<?php if(!is_null($add_sem_error_action)) echo $add_sem_error_action;?>	
 
 			$(document).ready(function() { 
 			  	$("#time").load("<?php echo base_url();?>addons/now.php");
-
+			  	
 			});
 
-			$('.dropdown-toggle').dropdown();
-			
+			$(".editbutton").click(function() {
+			        //$('#modalEditSemester').modal('show');
+			        var form_data = {
+			        	dataid: $(this).attr('id'),
+			        	ajax: '1'
+			        };
 
+			        var request = $.ajax({
+			        	url: "<?php echo base_url();?>index.php/semester/list_edit_semester",
+			        	type: 'POST',
+			        	data: form_data
+			        });
+
+			        request.done(function (response, textStatus, jqXHR){
+				        
+				    });
+			    });
+			
 		</script>
 	</body>
 </html>

@@ -73,7 +73,7 @@
 								<td><?php echo $row->curriculum_year;?></td>
 								<td class="">
 									<a id="<?php echo $row->curriculum_id;?>" style="cursor:pointer;" href="" class="pull-right"><i class="icon-trash"></i></a>
-									<a id="<?php echo $row->curriculum_id;?>" style="cursor:pointer;" class="pull-right"><i class="editbutton icon-pencil"></i></a>	
+									<a id="<?php echo $row->curriculum_id;?>" style="cursor:pointer;" class="editbutton pull-right"><i class="icon-pencil"></i></a>	
 								</td>
 							</tr>
 							<?php endforeach;?>
@@ -82,6 +82,7 @@
 						<?php endif; ?>
 						
 					</table>
+
 				</div>
 
 				<div class="span3">
@@ -179,7 +180,7 @@
 					<tr>
 						<td>Semester: </td>
 						<td>&nbsp;</td>
-						<td><input type='text' name='addsemester' id='addsemester' size='25' /></td>
+						<td><input value='<?php echo $semester;?>' type='text' name='addsemester' id='addsemester' size='25' /></td>
 					</tr>
 					<tr>
 						<td>Year: </td>

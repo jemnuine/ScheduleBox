@@ -13,9 +13,8 @@ class Members_Area extends CI_Controller {
 		if($this->session->userdata('is_logged_in')) {
 
 			$data = array (
-			'current_user' => $this->session->userdata('displayname'),
-			'current_username' => $this->session->userdata('username')
-
+				'current_user' => $this->session->userdata('displayname'),
+				'current_username' => $this->session->userdata('username')
 			);
 
 			$this->load->view('includes/nocache');
