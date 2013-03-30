@@ -13,7 +13,7 @@ class Schedule_model extends CI_Model {
     }
 
     public function list_semester() {
-        $query = $this->db->query('SELECT * FROM curriculum WHERE userid='.$this->session->userdata('userid'));
+        $query = $this->db->query('SELECT * FROM curriculum WHERE userid='.$this->session->userdata('userid') . ' ORDER BY curriculum_year DESC');
         return $query->result();
     }
 

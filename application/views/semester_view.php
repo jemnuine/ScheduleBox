@@ -37,7 +37,7 @@
 		<div class="hero-unit">
 		
 			<h1>Semester Information</h1>
-			<!--<h2 id="time"></h2>-->
+			
 			
 			<p>ScheduleBox provides you a simple interface for quick location of the things that you need.</p>
 		</div>
@@ -72,8 +72,8 @@
 								<td><?php echo $row->semester;?></td>
 								<td><?php echo $row->curriculum_year;?></td>
 								<td class="">
-									<a id="<?php echo $row->curriculum_id;?>" href="" class="pull-right"><i class="icon-trash"></i></a>
-									<a id="<?php echo $row->curriculum_id;?>" href="" class="pull-right"><i class="icon-pencil"></i></a>	
+									<a id="<?php echo $row->curriculum_id;?>" style="cursor:pointer;" href="" class="pull-right"><i class="icon-trash"></i></a>
+									<a id="<?php echo $row->curriculum_id;?>" style="cursor:pointer;" class="pull-right"><i class="editbutton icon-pencil"></i></a>	
 								</td>
 							</tr>
 							<?php endforeach;?>
@@ -92,7 +92,7 @@
 
 						<div class="well">
 					        <ul class="nav nav-list">
-					          <!--<li class="nav-header">Manage Schedule</li>-->
+					          
 					          <li class="active"><a href="<?php echo base_url();?>index.php/semester/add_semester">Semester</a></li>
 					          <li><a href="<?php echo base_url();?>index.php/departments">Departments</a></li>
 					          <li><a href="<?php echo base_url();?>index.php/courses">Courses</a></li>
@@ -163,5 +163,46 @@
 		</div>
 		<!-- Add Semester Modal -->
 
-		
+		<!-- Edit Semester Modal -->
+		<div id="modalEditSemester" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+				<h3 id="myModalLabel">Edit Semester </h3>
+			</div>
+			<!-- Modal Header -->
+			<?php if(!is_null($add_sem_error_msg)) echo $add_sem_error_msg;?>  
+			<br/>
+			<form action='<?php echo base_url();?>index.php/semester/add_semester' method='post' name='register'>
+				<!-- Modal Content -->
+				<table cellpadding="0" align=center>
+					<tr>
+						<td>Semester: </td>
+						<td>&nbsp;</td>
+						<td><input type='text' name='addsemester' id='addsemester' size='25' /></td>
+					</tr>
+					<tr>
+						<td>Year: </td>
+						<td>&nbsp;</td>
+						<td><input type='text' name='addyear' id='addyear' size='25'/></td>
+					</tr>
+					
+				</table>
 
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<table cellpadding="0" align=center>
+						<tr>
+							<td></td>
+							<td width="400px" style="text-align:center">
+								<input type="submit" value="Save" class="btn btn-warning btn-large"/>
+								<a class="btn btn-primary btn-large" data-dismiss="modal" aria-hidden="true">Cancel</a>
+							</td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+				<!-- Modal Footer -->
+			</form>
+		</div>
+		<!-- Edit Semester Modal -->

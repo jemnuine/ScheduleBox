@@ -26,15 +26,18 @@
 				$('#modalAddRoom').modal('show');
 				$('#modalAddInstructor').modal('show');
 				$('.semester').focus();
+
+						
 			});
 
-			$("#target2").click(function() {
-				$('#modalRegister').modal('show');
-				$('.regusername').focus();
+			$(".editbutton").click(function() {
+				$('#modalEditSemester').modal('show');
+		
 			});
 
 			$(document).ready(function() { 
 			  	$("#time").load("<?php echo base_url();?>addons/now.php");
+
 			});
 
 			$('.dropdown-toggle').dropdown();
