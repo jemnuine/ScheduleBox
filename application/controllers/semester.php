@@ -115,8 +115,6 @@ class Semester extends CI_Controller {
                 'semester' => $this->input->post('addsemester'),
                 'curriculum_year' => $this->input->post('addyear'),
                 'userid' => $this->session->userdata('userid')
-
-                
             );
 
 
@@ -154,9 +152,14 @@ class Semester extends CI_Controller {
 
 
         } else {
-            
-            $this->schedule_model->update_semester($curriculum_id);
-            redirect(base_url().'index.php/semester');
+
+            $sem = $this->input->post('editsemester');
+            $year = $this->input->post('edityear');
+            echo 'before: ' . $curriculum_id . '' . $sem . ' ' . $year;
+            $this->load->model('schedule_model');
+            $this->schedule_model->update_semester($curriculum_id, $sem, $year);
+            echo 'after: ' . $curriculum_id . '' . $sem . ' ' . $year;
+            //redirect(base_url().'index.php/semester');
         }
 
     }

@@ -35,14 +35,22 @@ class Schedule_model extends CI_Model {
     }
 
 
-    public function update_semester($id) {
-        $array = array (
-            'curriculum_id' => $id,
-            'userid' => $this->session->userdata('username')
-        );
+    public function update_semester($id, $semester, $year) {
 
-        $this->db->where($array);
-        $this->db->update('curriculum', $array);
+        if($id != '') {
+
+            $data = array (
+                'semester' => $semester,
+                'curriculum_year' => $year
+            );
+
+            $this->db->where('curriculum_id',$id);
+            $this->db->update('curriculum', $data);
+        } else {
+            echo ':(';
+        }
+    
+
     }
 
     public function update_pass() {

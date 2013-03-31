@@ -59,7 +59,6 @@
 						temp = response.split("*");
 				       	$('#editsemester').val(temp[0]);
 				       	$('#edityear').val(temp[1]);
-
 				    });
 				    <?php if(!is_null($add_sem_error_action)) echo $add_sem_error_action;?>	
 			    });
