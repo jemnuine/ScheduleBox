@@ -29,5 +29,5 @@ Drop me a 'Hi' at my email: `jemnuineuron@live.com`
 
 ## About Me
 
-Website: [www.jemnuine.com](http://jemnuine.com)0
+Website: [www.jemnuine.com](http://jemnuine.com).
 LinkedIn: [Visit My Profile](http://ph.linkedin.com/pub/leo-jeremiah-vicente/15/918/203).
