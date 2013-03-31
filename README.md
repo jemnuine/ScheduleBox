@@ -1,7 +1,7 @@
 # ScheduleBox
 <img src="http://richxiong89.files.wordpress.com/2012/10/echofon-icon.png" width="15px">
 
-A simple class scheduler developed using CodeIgniter and Bootstrap developed
+A simple class scheduler developed using CodeIgniter and Bootstrap by [Jemnuine](https://github.com/jemnuine).
 
 
 ## Features
