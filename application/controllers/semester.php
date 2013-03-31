@@ -10,8 +10,7 @@ class Semester extends CI_Controller {
  	public function index (
 	 		$add_sem_error_msg = NULL, 
 	 		$add_sem_error_action = NULL, 
-	 		$reg_error_msg = NULL,
-            $semester = NULL
+	 		$reg_error_msg = NULL
  		) {
 
         //check kung naka-login
@@ -23,8 +22,7 @@ class Semester extends CI_Controller {
 				'current_user' => $this->session->userdata('displayname'),
 				'current_username' => $this->session->userdata('username'),
 				'add_sem_error_msg' => $add_sem_error_msg,
-				'add_sem_error_action' => $add_sem_error_action,
-                'semester' => NULL
+				'add_sem_error_action' => $add_sem_error_action
 
 			);
 
@@ -50,7 +48,7 @@ class Semester extends CI_Controller {
  	public function add_semester() {
 
         $this->form_validation->set_rules('addsemester','Semester','trim|required');
-        $this->form_validation->set_rules('addyear','Year','trim|required|min_length[4]|greater_than[1997]');
+        $this->form_validation->set_rules('addyear','Year','trim|required|greater_than[1997]|less_than[2100]');
         
 
         if($this->form_validation->run() == TRUE) {
@@ -66,7 +64,6 @@ class Semester extends CI_Controller {
             $this->schedule_model->add_semester($data);
 
             $data = array (
-                'semester' => NULL,
                 'current_user' => $this->session->userdata('displayname'),
                 'current_username' => $this->session->userdata('username'),
             	'add_sem_error_msg' => NULL,
@@ -83,7 +80,6 @@ class Semester extends CI_Controller {
             $add_sem_error_action = "$('#modalAddSemester').modal('show');";
 
             $data = array (
-                'semester' => NULL,
                 'current_user' => $this->session->userdata('displayname'),
                 'current_username' => $this->session->userdata('username'),
                 'add_sem_error_msg' => $add_sem_error_msg,
@@ -94,12 +90,26 @@ class Semester extends CI_Controller {
 
             if($query = $this->schedule_model->list_semester()) {
                 $data['records'] = $query;
+            } 
+
+            if(!$data['records']){
+                $add_sem_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>The record is existing!</div>';
+                $add_sem_error_action = "$('#modalAddSemester').modal('show');";
+                $data = array (
+                    'current_user' => $this->session->userdata('displayname'),
+                    'current_username' => $this->session->userdata('username'),
+                    'add_sem_error_msg' => $add_sem_error_msg,
+                    'add_sem_error_action' => $add_sem_error_action
+                );
             }
+
+            $this->session->set_userdata($data);
 
 			$this->load->view('includes/nocache');
 			$this->load->view('includes/header2');
     		$this->load->view('semester_view', $data);
     		$this->load->view('includes/semester_footer', $data);
+
             
         }
     }
@@ -126,6 +136,8 @@ class Semester extends CI_Controller {
         if($this->input->post('ajax')) {
             
 
+
+
             //ni-recycle ko lng ung sa addsem na modal trigger
             $add_sem_error_action = "$('#modalEditSemester').modal('show');"; 
 
@@ -137,10 +149,13 @@ class Semester extends CI_Controller {
                 'current_username' => $this->session->userdata('username'),
                 'add_sem_error_msg' => $add_sem_error_msg,
                 'add_sem_error_action' => $add_sem_error_action,
+                'dataid' => $curriculum_id,
                 'sem' => $query,
                 'year' => $query2
                 
             );
+
+            $this->session->set_userdata($data); //the trick!! mawawala na ung ajax request next time eh
             
             echo implode('', $data['sem']);
             echo '*';
@@ -155,11 +170,11 @@ class Semester extends CI_Controller {
 
             $sem = $this->input->post('editsemester');
             $year = $this->input->post('edityear');
-            echo 'before: ' . $curriculum_id . '' . $sem . ' ' . $year;
-            $this->load->model('schedule_model');
+
+            //kinuha ung session ng curriculum id
+            $curriculum_id = $this->session->userdata('dataid');
             $this->schedule_model->update_semester($curriculum_id, $sem, $year);
-            echo 'after: ' . $curriculum_id . '' . $sem . ' ' . $year;
-            //redirect(base_url().'index.php/semester');
+            redirect(base_url().'index.php/semester');
         }
 
     }

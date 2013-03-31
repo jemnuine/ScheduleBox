@@ -59,9 +59,12 @@
 						temp = response.split("*");
 				       	$('#editsemester').val(temp[0]);
 				       	$('#edityear').val(temp[1]);
+				       	$('#editselectsemester').val(temp[0]);
 				    });
-				    <?php if(!is_null($add_sem_error_action)) echo $add_sem_error_action;?>	
+				    	
 			    });
+			
+			<?php if(!is_null($add_sem_error_action)) echo $add_sem_error_action;?>
 			
 		</script>
 	</body>

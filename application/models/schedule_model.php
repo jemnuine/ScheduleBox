@@ -8,8 +8,21 @@ class Schedule_model extends CI_Model {
     
 
     public function add_semester($data) {
+        
+        //check if may duplicate row
+        $query = $this->db->query (
+            'SELECT semester, curriculum_year FROM curriculum WHERE userid=' . $this->session->userdata('userid') .
+            ' AND semester="' . $data['semester'] . '" AND curriculum_year=' . $data['curriculum_year']
+            );
+        $records = $query->result();
+
+        //if may record
+        if($records) {
+            return false;
+        }
+
         $this->db->insert('curriculum', $data);
-        return;
+        return true;
     }
 
     public function list_semester() {

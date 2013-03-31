@@ -48,7 +48,6 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span9">
-					
 					<button class="btn btn-primary pull-right" type="button"><i class="icon-print icon-white"></i> Print Page</button>
 					<b class="pull-right">&nbsp;</b>
 					<button id="addbutton" class="btn btn-success" type="button"><i class="icon-plus icon-white"></i> New</button>
@@ -136,7 +135,14 @@
 					<tr>
 						<td>Semester: </td>
 						<td>&nbsp;</td>
-						<td><input type='text' name='addsemester' id='addsemester' size='25' /></td>
+						<td>
+							<select id="addsemester" name='addsemester'>
+								<option value="First">First</option>
+								<option value="Second">Second</option>
+								<option value="Third">Third</option>
+								<option value="Summer">Summer</option>
+							</select>
+						</td>
 					</tr>
 					<tr>
 						<td>Year: </td>
@@ -181,8 +187,14 @@
 						<td>Semester: </td>
 						<td>&nbsp;</td>
 
-						<td><input type='text' name='editsemester' id='editsemester' size='25' /></td>
-						
+						<td>
+							<select id="editsemester" name="editsemester">
+								<option value="First">First</option>
+								<option value="Second">Second</option>
+								<option value="Third">Third</option>
+								<option value="Summer">Summer</option>
+							</select>
+						</td>	
 					</tr>
 					<tr>
 						<td>Year: </td>
