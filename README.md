@@ -16,7 +16,7 @@ The application will be able to help manage:
 
 ## Download
 
-* [You can grab my latest progress here](https://github.com/jemnuine/ScheduleBox/archive/master.zip).
+* You can grab my latest progress [here](https://github.com/jemnuine/ScheduleBox/archive/master.zip).
 * Or, you can Clone the repo: `git clone https://github.com/jemnuine/ScheduleBox.git`.
 
 ## Found A Bug?
@@ -29,5 +29,5 @@ Drop me a 'Hi' at my email: `jemnuineuron@live.com`
 
 ## About Me
 
-Website: [www.jemnuine.com](http://jemnuine.com)
-LinkedIn: [Profile](http://ph.linkedin.com/pub/leo-jeremiah-vicente/15/918/203)
+Website: [www.jemnuine.com](http://jemnuine.com)0
+LinkedIn: [Visit My Profile](http://ph.linkedin.com/pub/leo-jeremiah-vicente/15/918/203).
