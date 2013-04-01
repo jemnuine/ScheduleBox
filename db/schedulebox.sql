@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 01, 2013 at 04:44 PM
+-- Generation Time: Apr 01, 2013 at 06:08 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -68,7 +68,7 @@ INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activ
 CREATE TABLE IF NOT EXISTS `course` (
   `course_code` varchar(10) NOT NULL,
   `course_name` varchar(80) NOT NULL,
-  `department_name` varchar(45) NOT NULL,
+  `department_desc` varchar(255) NOT NULL,
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`course_code`),
   KEY `fk_course_users1_idx` (`userid`)
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `curriculum` (
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`curriculum_id`),
   KEY `fk_curriculum_users1_idx` (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `curriculum`
@@ -110,9 +110,8 @@ CREATE TABLE IF NOT EXISTS `curriculum` (
 
 INSERT INTO `curriculum` (`curriculum_id`, `semester`, `curriculum_year`, `userid`) VALUES
 (24, 'First', 2012, 12),
-(27, 'First', 2012, 1),
-(28, 'First', 2013, 1),
-(34, 'Second', 2013, 1);
+(35, 'First', 2011, 1),
+(36, 'First', 2012, 1);
 
 -- --------------------------------------------------------
 
@@ -139,19 +138,15 @@ CREATE TABLE IF NOT EXISTS `department` (
   `department_desc` varchar(255) NOT NULL,
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`department_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `department`
 --
 
 INSERT INTO `department` (`department_id`, `department_code`, `department_desc`, `userid`) VALUES
-(1, 'CCMIT', 'College of Chuchu', 1),
-(4, 'CCPJ', 'College of Abnoys', 1),
-(5, 'CCANG', 'College of Torpe', 1),
 (6, 'ewrewr', 'werwer', 18),
-(7, 'COE', 'College of Engot', 18),
-(8, 'CCANG', 'College of Torpe', 1);
+(7, 'COE', 'College of Engot', 18);
 
 -- --------------------------------------------------------
 

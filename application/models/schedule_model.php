@@ -145,6 +145,18 @@ class Schedule_model extends CI_Model {
 
     public function update_department($id, $code, $desc) {
 
+        //check if may duplicate row
+        $query = $this->db->query (
+            'SELECT department_code, department_desc FROM department WHERE userid=' . $this->session->userdata('userid') .
+            ' AND department_code="' . $code . '" OR department_desc="' . $desc . '"'
+            );
+        $records = $query->result();
+
+        //if may record
+        if($records) {
+            return false;
+        }
+
         if($id != '') {
 
             $data = array (
@@ -165,8 +177,16 @@ class Schedule_model extends CI_Model {
         
         if($id != '') {
 
+            $query = $this->db->query('SELECT department_desc FROM department WHERE userid='.$this->session->userdata('userid') . ' AND department_id=' . $id);
+
+            $desc = $query->result();
+
             $this->db->where('department_id',$id);
             $this->db->delete('department');
+
+            //cascade deletion
+            $this->db->where('department_desc', $desc['department_desc']);
+            $this->db->delete('course');
 
         } else {
 
