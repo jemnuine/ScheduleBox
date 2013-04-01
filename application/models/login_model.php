@@ -24,8 +24,10 @@ class Login_model extends CI_Model{
                     'userid' => $row->userid,
                     'displayname' => $row->displayname,
                     'username' => $row->username,
+                    'password' => $row->password,
                     'is_logged_in' => true
                     );
+        
             $this->session->set_userdata($data);
             return true;
         }

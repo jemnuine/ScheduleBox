@@ -277,7 +277,7 @@
 					<td>&nbsp;</td>
 
 					<td>
-						You are about to delete all records. Are you sure with this operation?
+						You are about to delete all records. Do you want to continue this operation?
 					</td>	
 					<td>&nbsp;</td>
 				</tr>

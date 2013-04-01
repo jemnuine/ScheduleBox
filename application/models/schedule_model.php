@@ -90,6 +90,8 @@ class Schedule_model extends CI_Model {
 
     /********** Begin Department Functions **********/
 
+    
+
     /********** End Department Functions **********/
 
 
