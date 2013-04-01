@@ -24,9 +24,9 @@ class Semester extends CI_Controller {
 
 			);
 
-            $this->load->model('schedule_model');
+            $this->load->model('semester_model');
 
-            if($query = $this->schedule_model->list_semester()) {
+            if($query = $this->semester_model->list_semester()) {
                 $data['records'] = $query;
             }
 
@@ -58,8 +58,8 @@ class Semester extends CI_Controller {
             );
 
 
-            $this->load->model('schedule_model');
-            $this->schedule_model->add_semester($data);
+            $this->load->model('semester_model');
+            $this->semester_model->add_semester($data);
 
             $data = array (
                 'current_user' => $this->session->userdata('displayname'),
@@ -84,9 +84,9 @@ class Semester extends CI_Controller {
                 'add_sem_error_action' => $add_sem_error_action
             );
 
-            $this->load->model('schedule_model');
+            $this->load->model('semester_model');
 
-            if($query = $this->schedule_model->list_semester()) {
+            if($query = $this->semester_model->list_semester()) {
                 $data['records'] = $query;
             } 
 
@@ -128,7 +128,7 @@ class Semester extends CI_Controller {
             );
 
 
-        $this->load->model('schedule_model');
+        $this->load->model('semester_model');
         //kinuha lang ung curriculum id galing sa view
         $curriculum_id = $this->input->post('dataid');
 
@@ -141,8 +141,8 @@ class Semester extends CI_Controller {
             //ni-recycle ko lng ung sa addsem na modal trigger
             $add_sem_error_action = "$('#modalEditSemester').modal('show');"; 
 
-            $query = $this->schedule_model->get_semester($curriculum_id);
-            $query2 = $this->schedule_model->get_year($curriculum_id);
+            $query = $this->semester_model->get_semester($curriculum_id);
+            $query2 = $this->semester_model->get_year($curriculum_id);
 
             $data = array (
                 'current_user' => $this->session->userdata('displayname'),
@@ -173,7 +173,7 @@ class Semester extends CI_Controller {
 
             //kinuha ung session ng curriculum id
             $curriculum_id = $this->session->userdata('dataid');
-            $this->schedule_model->update_semester($curriculum_id, $sem, $year);
+            $this->semester_model->update_semester($curriculum_id, $sem, $year);
             redirect(base_url().'index.php/semester');
         }
 
@@ -181,16 +181,16 @@ class Semester extends CI_Controller {
 
     public function delete_semester ($id = NULL) {
 
-        $this->load->model('schedule_model');
-        $this->schedule_model->delete_semester($id);
+        $this->load->model('semester_model');
+        $this->semester_model->delete_semester($id);
         redirect(base_url().'index.php/semester');
         return;
     }
 
     public function delete_all_semester () {
 
-        $this->load->model('schedule_model');
-        $this->schedule_model->delete_all_semester();
+        $this->load->model('semester_model');
+        $this->semester_model->delete_all_semester();
         redirect(base_url().'index.php/semester');
         return;
     }

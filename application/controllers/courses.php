@@ -26,7 +26,7 @@ class Courses extends CI_Controller {
 
 			$this->load->model('schedule_model');
 
-            if($query = $this->schedule_model->list_department()) {
+            if($query = $this->schedule_model->list_course()) {
                 $data['records'] = $query;
             }
 

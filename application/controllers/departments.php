@@ -24,9 +24,9 @@ class Departments extends CI_Controller {
 
 			);
 
-			$this->load->model('schedule_model');
+			$this->load->model('department_model');
 
-            if($query = $this->schedule_model->list_department()) {
+            if($query = $this->department_model->list_department()) {
                 $data['records'] = $query;
             }
 
@@ -59,8 +59,8 @@ class Departments extends CI_Controller {
             );
 
 
-            $this->load->model('schedule_model');
-            $this->schedule_model->add_department($data);
+            $this->load->model('department_model');
+            $this->department_model->add_department($data);
 
             $data = array (
                 'current_user' => $this->session->userdata('displayname'),
@@ -85,9 +85,9 @@ class Departments extends CI_Controller {
                 'add_dept_error_action' => $add_dept_error_action
             );
 
-            $this->load->model('schedule_model');
+            $this->load->model('department_model');
 
-            if($query = $this->schedule_model->list_department()) {
+            if($query = $this->department_model->list_department()) {
                 $data['records'] = $query;
             }
 
@@ -129,7 +129,7 @@ class Departments extends CI_Controller {
             );
 
 
-        $this->load->model('schedule_model');
+        $this->load->model('department_model');
         //kinuha lang ung department id galing sa view
         $department_id = $this->input->post('dataid');
 
@@ -139,8 +139,8 @@ class Departments extends CI_Controller {
             //ni-recycle ko lng ung sa addsem na modal trigger
             $add_dept_error_action = "$('#modalEditDepartment').modal('show');"; 
 
-            $query = $this->schedule_model->get_dept_code($department_id);
-            $query2 = $this->schedule_model->get_dept_desc($department_id);
+            $query = $this->department_model->get_dept_code($department_id);
+            $query2 = $this->department_model->get_dept_desc($department_id);
 
             $data = array (
                 'current_user' => $this->session->userdata('displayname'),
@@ -165,7 +165,7 @@ class Departments extends CI_Controller {
 
             //kinuha ung session ng dept id
             $department_id = $this->session->userdata('dataid');
-            $this->schedule_model->update_department($department_id, $code, $desc);
+            $this->department_model->update_department($department_id, $code, $desc);
             redirect(base_url().'index.php/departments');
         }
 
@@ -173,16 +173,16 @@ class Departments extends CI_Controller {
 
     public function delete_department ($id = NULL) {
 
-        $this->load->model('schedule_model');
-        $this->schedule_model->delete_department($id);
+        $this->load->model('department_model');
+        $this->department_model->delete_department($id);
         redirect(base_url().'index.php/departments');
         return;
     }
 
     public function delete_all_department () {
 
-        $this->load->model('schedule_model');
-        $this->schedule_model->delete_all_department();
+        $this->load->model('department_model');
+        $this->department_model->delete_all_department();
         redirect(base_url().'index.php/departments');
         return;
     }
