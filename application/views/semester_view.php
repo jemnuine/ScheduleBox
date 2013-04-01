@@ -71,16 +71,17 @@
 								<td><?php echo $row->semester;?></td>
 								<td><?php echo $row->curriculum_year;?></td>
 								<td class="">
-									<a id="<?php echo $row->curriculum_id;?>" style="cursor:pointer;" href="" class="pull-right"><i class="icon-trash"></i></a>
+									<a id="<?php echo $row->curriculum_id;?>" style="cursor:pointer;" class="deletebutton pull-right"><i class="icon-trash"></i></a>
 									<a id="<?php echo $row->curriculum_id;?>" style="cursor:pointer;" class="editbutton pull-right"><i class="icon-pencil"></i></a>	
 								</td>
 							</tr>
 							<?php endforeach;?>
-							<?php else: ?>
 
 						<?php endif; ?>
 						
 					</table>
+
+					<?php if(!isset($records)) echo '<div class="alert alert-info" align="center">No Records Yet!</div>'?>
 
 				</div>
 
@@ -221,3 +222,46 @@
 			</form>
 		</div>
 		<!-- Edit Semester Modal -->
+
+		<!-- Delete Semester Modal -->
+		<div id="modalConfirm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+				<h3 id="myModalLabel">Confirm</h3>
+			</div>
+			<!-- Modal Header -->
+			<br/>
+			
+				
+			
+			<table cellpadding="0" align=center>
+				<tr>
+					<td>&nbsp;</td>
+
+					<td>
+						Are You Sure You Want to Delete This Data?
+					</td>	
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+			<br/>
+			<!-- Modal Footer -->
+			<div class="modal-footer">
+				<table cellpadding="0" align=center>
+					<tr>
+						<td></td>
+						<td width="400px" style="text-align:center">
+							
+							<a id="triggerdelete" class="btn btn-warning btn-large" data-dismiss="modal" aria-hidden="true">Delete</a>
+
+							<a class="btn btn-primary btn-large" data-dismiss="modal" aria-hidden="true">Cancel</a>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<!-- Modal Footer -->	
+		</div>
+		<!-- Delete Semester Modal -->

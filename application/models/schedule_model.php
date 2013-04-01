@@ -6,6 +6,7 @@ class Schedule_model extends CI_Model {
         parent:: __construct();
     }
     
+    /********** Begin Semester Functions **********/
 
     public function add_semester($data) {
         
@@ -59,17 +60,59 @@ class Schedule_model extends CI_Model {
 
             $this->db->where('curriculum_id',$id);
             $this->db->update('curriculum', $data);
+
         } else {
-            echo ':(';
+
+            echo 'Oops! Something is wrong in updating semester :(';
         }
-    
+    }
+
+    public function delete_semester($id) {
+        
+        if($id != '') {
+
+            $this->db->where('curriculum_id',$id);
+            $this->db->delete('curriculum');
+
+        } else {
+
+            echo 'Oops! Something is wrong in deleting semester :(';
+        }
+    }
+
+    public function delete_all_semester() {
 
     }
 
-    public function update_pass() {
+    /********** End Semester Functions **********/
 
-        $this->db->where('');
-    }
 
-    
+    /********** Begin Department Functions **********/
+
+    /********** End Department Functions **********/
+
+
+    /********** Begin Course Functions **********/
+
+    /********** End Course Functions **********/
+
+
+    /********** Begin Section Functions **********/
+
+    /********** End Section Functions **********/
+
+
+    /********** Begin Subject Functions **********/
+
+    /********** End Subject Functions **********/
+
+
+    /********** Begin Room Functions **********/
+
+    /********** End Room Functions **********/
+
+
+    /********** Begin Instructor Functions **********/
+
+    /********** End Instructor Functions **********/
 }

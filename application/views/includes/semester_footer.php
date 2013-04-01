@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?php echo base_url();?>scripts/jquery.js"></script>
+		
 	    <script type="text/javascript" src="<?php echo base_url();?>scripts/bootstrap.min.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>scripts/http://platform.twitter.com/widgets.js"></script>
 	    <script type="text/javascript" src="<?php echo base_url();?>scripts/jquery.js"></script>
@@ -20,15 +20,9 @@
 		<script>
 			$("#addbutton").click(function() {
 				$('#modalAddSemester').modal('show');
-				$('#modalAddDepartment').modal('show');
-				$('#modalAddCourse').modal('show');
-				$('#modalAddSection').modal('show');
-				$('#modalAddSubject').modal('show');
-				$('#modalAddRoom').modal('show');
-				$('#modalAddInstructor').modal('show');
+				
 				$('.semester').focus();
-
-						
+		
 			});
 
 			$('.dropdown-toggle').dropdown();
@@ -41,28 +35,41 @@
 			});
 
 			$(".editbutton").click(function() {
-			        //$('#modalEditSemester').modal('show');
-			        var form_data = {
-			        	dataid: $(this).attr('id'),
-			        	ajax: '1'
-			        };
+		        //$('#modalEditSemester').modal('show');
+		        var form_data = {
+		        	dataid: $(this).attr('id'),
+		        	ajax: '1'
+		        };
 
-			        var request = $.ajax({
-			        	url: "<?php echo base_url();?>index.php/semester/list_edit_semester",
-			        	type: 'POST',
-			        	data: form_data
-			        });
+		        var request = $.ajax({
+		        	url: "<?php echo base_url();?>index.php/semester/list_edit_semester",
+		        	type: 'POST',
+		        	data: form_data
+		        });
 
-			        request.done(function (response, textStatus, jqXHR){
-				        $('#modalEditSemester').modal('show');
-						var temp = new Array();
-						temp = response.split("*");
-				       	$('#editsemester').val(temp[0]);
-				       	$('#edityear').val(temp[1]);
-				       	$('#editselectsemester').val(temp[0]);
-				    });
-				    	
+		        request.done(function (response, textStatus, jqXHR){
+			        $('#modalEditSemester').modal('show');
+					var temp = new Array();
+					temp = response.split("*");
+			       	$('#editsemester').val(temp[0]);
+			       	$('#edityear').val(temp[1]);
+			       	$('#editselectsemester').val(temp[0]);
 			    });
+				    	
+			});
+
+			//store semester id
+			var deleteid;
+
+			$(".deletebutton").click(function() {
+				$('#modalConfirm').modal('show');
+				deleteid = $(this).attr('id');
+
+			});
+
+			$("#triggerdelete").click(function() {
+		        window.location.href = "<?php echo base_url();?>index.php/semester/delete_semester/" + deleteid;				    	
+			});
 			
 			<?php if(!is_null($add_sem_error_action)) echo $add_sem_error_action;?>
 			
