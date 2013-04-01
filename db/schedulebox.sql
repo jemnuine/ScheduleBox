@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 02, 2013 at 07:27 AM
+-- Generation Time: Apr 01, 2013 at 04:44 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `days` (
 CREATE TABLE IF NOT EXISTS `department` (
   `department_id` int(11) NOT NULL AUTO_INCREMENT,
   `department_code` varchar(45) NOT NULL,
-  `department_desc` varchar(45) NOT NULL,
+  `department_desc` varchar(255) NOT NULL,
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`department_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
