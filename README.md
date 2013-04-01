@@ -1,6 +1,4 @@
-<img src="http://s3.postimg.org/kix8o07n3/logo.png">
-
-# ScheduleBox
+# <img src="http://s3.postimg.org/kix8o07n3/logo.png"> ScheduleBox
 
 A simple class scheduler developed by [Jemnuine](https://github.com/jemnuine) using CodeIgniter and Bootstrap.
 
