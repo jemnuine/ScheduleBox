@@ -81,7 +81,8 @@ class Schedule_model extends CI_Model {
     }
 
     public function delete_all_semester() {
-
+        $this->db->where('userid', $this->session->userdata('userid'));
+        $this->db->delete('curriculum'); 
     }
 
     /********** End Semester Functions **********/

@@ -184,8 +184,15 @@ class Semester extends CI_Controller {
         $this->load->model('schedule_model');
         $this->schedule_model->delete_semester($id);
         redirect(base_url().'index.php/semester');
+        return;
+    }
 
-        return false;
+    public function delete_all_semester () {
+
+        $this->load->model('schedule_model');
+        $this->schedule_model->delete_all_semester();
+        redirect(base_url().'index.php/semester');
+        return;
     }
 
 }

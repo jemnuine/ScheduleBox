@@ -48,11 +48,11 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span9">
-					<button class="btn btn-primary pull-right" type="button"><i class="icon-print icon-white"></i> Print Page</button>
+					<button class="btn btn-primary pull-right" type="button" onClick="window.print()"><i class="icon-print icon-white"></i> Print Page</button>
 					<b class="pull-right">&nbsp;</b>
 					<button id="addbutton" class="btn btn-success" type="button"><i class="icon-plus icon-white"></i> New</button>
 					<b class="pull-right">&nbsp;</b>
-					<button class="btn btn-danger pull-right" type="button"><i class="icon-remove icon-white"></i> Delete All</button>
+					<button class="btn btn-danger pull-right delall" type="button"><i class="icon-remove icon-white"></i> Delete All</button>
 					<table class="table table-striped">
 						<thead>
 							<td>
@@ -87,7 +87,7 @@
 
 				<div class="span3">
 					<div class="sideb">
-						<div class="bread">
+						<div class="bread hidePrint">
 							<i class="icon-check icon-white"></i> Manage Entries
 						</div>
 
@@ -232,15 +232,12 @@
 			</div>
 			<!-- Modal Header -->
 			<br/>
-			
-				
-			
 			<table cellpadding="0" align=center>
 				<tr>
 					<td>&nbsp;</td>
 
 					<td>
-						Are You Sure You Want to Delete This Data?
+						Are you sure you want to delete this data?
 					</td>	
 					<td>&nbsp;</td>
 				</tr>
@@ -265,3 +262,43 @@
 			<!-- Modal Footer -->	
 		</div>
 		<!-- Delete Semester Modal -->
+
+		<!-- Delete All -->
+		<div id="modalConfirm2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+				<h3 id="myModalLabel">Warning!</h3>
+			</div>
+			<!-- Modal Header -->
+			<br/>
+			<table cellpadding="0" align=center>
+				<tr>
+					<td>&nbsp;</td>
+
+					<td>
+						You are about to delete all records. Are you sure with this operation?
+					</td>	
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+			<br/>
+			<!-- Modal Footer -->
+			<div class="modal-footer">
+				<table cellpadding="0" align=center>
+					<tr>
+						<td></td>
+						<td width="400px" style="text-align:center">
+							
+							<a id="triggerdelall" class="btn btn-warning btn-large" data-dismiss="modal" aria-hidden="true">Delete</a>
+
+							<a class="btn btn-primary btn-large" data-dismiss="modal" aria-hidden="true">Cancel</a>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<!-- Modal Footer -->	
+		</div>
+		<!-- Delete All -->

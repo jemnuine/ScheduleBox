@@ -58,7 +58,7 @@
 				    	
 			});
 
-			//store semester id
+			//this is very poor and unsafe don't you worry I'll fix this later using ajax request
 			var deleteid;
 
 			$(".deletebutton").click(function() {
@@ -69,6 +69,15 @@
 
 			$("#triggerdelete").click(function() {
 		        window.location.href = "<?php echo base_url();?>index.php/semester/delete_semester/" + deleteid;				    	
+			});
+
+			$(".delall").click(function() {
+				$('#modalConfirm2').modal('show');
+
+			});
+
+			$("#triggerdelall").click(function() {
+		        window.location.href = "<?php echo base_url();?>index.php/semester/delete_all_semester";				    	
 			});
 			
 			<?php if(!is_null($add_sem_error_action)) echo $add_sem_error_action;?>
