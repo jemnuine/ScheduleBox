@@ -24,10 +24,16 @@ class Departments extends CI_Controller {
 
 			);
 
+			$this->load->model('schedule_model');
+
+            if($query = $this->schedule_model->list_department()) {
+                $data['records'] = $query;
+            }
+
 			$this->load->view('includes/nocache');
 	        $this->load->view('includes/header2');
 	        $this->load->view('departments_view', $data);
-	        $this->load->view('includes/dept_footer');
+	        $this->load->view('includes/department_footer');
 
 			
 		}
@@ -42,13 +48,13 @@ class Departments extends CI_Controller {
  	public function add_department() {
 
         $this->form_validation->set_rules('addCode','Department Code','trim|required');
-        $this->form_validation->set_rules('addDescription','Department Description','trim|required');
+        $this->form_validation->set_rules('addDesc','Department Description','trim|required');
         
 
         if($this->form_validation->run() == TRUE) {
             $data = array (
-                'dept_code' => $this->input->post('addCode'),
-                'dept_desc' => $this->input->post('addDescription'),
+                'department_code' => $this->input->post('addCode'),
+                'department_desc' => $this->input->post('addDesc'),
                 'userid' => $this->session->userdata('userid')   
             );
 
@@ -63,7 +69,7 @@ class Departments extends CI_Controller {
             	'add_dept_error_action' => NULL //wala lang xD
             );
 
-            redirect(base_url() . 'index.php/department', 'refresh');   
+            redirect(base_url() . 'index.php/departments', 'refresh');   
             
         }
         else
@@ -83,9 +89,9 @@ class Departments extends CI_Controller {
 
             if($query = $this->schedule_model->list_department()) {
                 $data['records'] = $query;
-            } 
+            }
 
-            if(!$data['records']){
+            if(!$data['records']) {
                 $add_dept_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>The record is existing!</div>';
                 $add_dept_error_action = "$('#modalAddDepartment').modal('show');";
                 $data = array (
@@ -95,13 +101,15 @@ class Departments extends CI_Controller {
                     'add_dept_error_action' => $add_dept_error_action
                 );
             }
+             
+	        
 
             $this->session->set_userdata($data);
 
 			$this->load->view('includes/nocache');
 			$this->load->view('includes/header2');
-    		$this->load->view('semester_view', $data);
-    		$this->load->view('includes/dept_footer', $data);
+    		$this->load->view('departments_view', $data);
+    		$this->load->view('includes/department_footer', $data);
 
             
         }
@@ -115,34 +123,31 @@ class Departments extends CI_Controller {
         ) {
 
         $data = array (
-                'dept_code' => $this->input->post('addCode'),
-                'dept_desc' => $this->input->post('addDescription'),
+                'department_code' => $this->input->post('addCode'),
+                'department_desc' => $this->input->post('addDescription'),
                 'userid' => $this->session->userdata('userid')
             );
 
 
         $this->load->model('schedule_model');
-        //kinuha lang ung curriculum id galing sa view
+        //kinuha lang ung department id galing sa view
         $department_id = $this->input->post('dataid');
 
         //check kung ajax request
         if($this->input->post('ajax')) {
-            
-
-
 
             //ni-recycle ko lng ung sa addsem na modal trigger
             $add_dept_error_action = "$('#modalEditDepartment').modal('show');"; 
 
-            $query = $this->schedule_model->get_dept_code($curriculum_id);
-            $query2 = $this->schedule_model->get_dept_desc($curriculum_id);
+            $query = $this->schedule_model->get_dept_code($department_id);
+            $query2 = $this->schedule_model->get_dept_desc($department_id);
 
             $data = array (
                 'current_user' => $this->session->userdata('displayname'),
                 'current_username' => $this->session->userdata('username'),
                 'add_dept_error_msg' => $add_dept_error_msg,
                 'add_dept_error_action' => $add_dept_error_action,
-                'dataid' => $curriculum_id,
+                'dataid' => $department_id,
                 'dcode' => $query,
                 'ddesc' => $query2
                 
@@ -156,12 +161,12 @@ class Departments extends CI_Controller {
         } else {
 
             $code = $this->input->post('editCode');
-            $desc = $this->input->post('editDescription');
+            $desc = $this->input->post('editDesc');
 
             //kinuha ung session ng dept id
             $department_id = $this->session->userdata('dataid');
             $this->schedule_model->update_department($department_id, $code, $desc);
-            redirect(base_url().'index.php/department');
+            redirect(base_url().'index.php/departments');
         }
 
     }
@@ -170,7 +175,7 @@ class Departments extends CI_Controller {
 
         $this->load->model('schedule_model');
         $this->schedule_model->delete_delete($id);
-        redirect(base_url().'index.php/department');
+        redirect(base_url().'index.php/departments');
         return;
     }
 
@@ -178,7 +183,7 @@ class Departments extends CI_Controller {
 
         $this->load->model('schedule_model');
         $this->schedule_model->delete_all_department();
-        redirect(base_url().'index.php/department');
+        redirect(base_url().'index.php/departments');
         return;
     }
 

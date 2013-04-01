@@ -48,7 +48,7 @@
 			<div class="row-fluid">
 				<div class="span9">
 					
-					<button class="btn btn-primary pull-right" type="button"><i class="icon-print icon-white"></i> Print Page</button>
+					<button class="btn btn-primary pull-right" type="button" onClick="window.print()"><i class="icon-print icon-white"></i> Print Page</button>
 					<b class="pull-right">&nbsp;</b>
 					<button id="addbutton" class="btn btn-success" type="button"><i class="icon-plus icon-white"></i> New</button>
 					<b class="pull-right">&nbsp;</b>
@@ -65,42 +65,20 @@
 							
 									
 						</thead>
-						<tr>
+						<?php if(isset($records)) : foreach($records as $row) : ?>
+							<tr>
+								<td><?php echo $row->department_code;?></td>
+								<td><?php echo $row->department_desc;?></td>
+								<td class="">
+									<a id="<?php echo $row->department_id;?>" style="cursor:pointer;" class="deletebutton pull-right"><i class="icon-trash"></i></a>
+									<a id="<?php echo $row->department_id;?>" style="cursor:pointer;" class="editbutton pull-right"><i class="icon-pencil"></i></a>	
+								</td>
+							</tr>
+							<?php endforeach;?>
 
-							<td>
-								Sample
-
-							</td>
-							<td>
-								Sample
-							</td>
-							<td class="">
-								<a href="" class="pull-right"><i class="icon-trash"></i></a>
-								<a href="" class="pull-right"><i class="icon-pencil"></i></a>
-								
-							</td>
-
-						</tr>
-						<tr>
-
-							<td>
-								Sample
-
-							</td>
-							<td>
-								Sample
-							</td>
-							<td class="">
-								<a href="" class="pull-right"><i class="icon-trash"></i></a>
-								<a href="" class="pull-right"><i class="icon-pencil"></i></a>
-								
-							</td>
-
-						</tr>
-
-
-
+						<?php endif; ?>
 					</table>
+					<?php if(!isset($records)) echo '<div class="alert alert-info" align="center">No Records Yet!</div>'?>
 				</div>
 
 				<div class="span3">
@@ -146,18 +124,18 @@
 			<!-- Modal Header -->
 			<?php if(!is_null($add_dept_error_msg)) echo $add_dept_error_msg;?>  
 			<br/>
-			<form action='<?php echo base_url();?>index.php/' method='post' name='register'>
+			<form action='<?php echo base_url();?>index.php/departments/add_department' method='post' name='register'>
 				<!-- Modal Content -->
 				<table cellpadding="0" align=center>
 					<tr>
 						<td>Department Code: </td>
 						<td>&nbsp;</td>
-						<td><input type='text' name='add_dept_code' id='add_dept_code' size='25' /></td>
+						<td><input type='text' name='addCode' id='addCode' size='25' /></td>
 					</tr>
 					<tr>
 						<td>Department Description: </td>
 						<td>&nbsp;</td>
-						<td><input type='text' name='add_dept_desc' id='add_dept_desc' size='25' /></td>
+						<td><input type='text' name='addDesc' id='addDesc' size='25' /></td>
 					</tr>
 					
 				</table>
@@ -179,3 +157,129 @@
 			</form>
 		</div>
 		<!-- Add Department Modal -->
+
+		<!-- Edit Semester Modal -->
+		<div id="modalEditDepartment" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+				<h3 id="myModalLabel">Edit Department </h3>
+			</div>
+			<!-- Modal Header -->
+			<?php if(!is_null($add_dept_error_msg)) echo $add_dept_error_msg;?>  
+			<br/>
+			<form action='<?php echo base_url();?>index.php/departments/list_edit_department' method='post' name='register'>
+				<!-- Modal Content -->
+				
+
+				<table cellpadding="0" align=center>
+					<tr>
+						<td>Department Code: </td>
+						<td>&nbsp;</td>
+						<td><input type='text' name='editCode' id='editCode' size='25' /></td>
+					</tr>
+					<tr>
+						<td>Department Description: </td>
+						<td>&nbsp;</td>
+						<td><input type='text' name='editDesc' id='editDesc' size='25' /></td>
+					</tr>
+					
+				</table>
+
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<table cellpadding="0" align=center>
+						<tr>
+							<td></td>
+							<td width="400px" style="text-align:center">
+								<input type="submit" value="Save" class="btn btn-warning btn-large"/>
+								<a class="btn btn-primary btn-large" data-dismiss="modal" aria-hidden="true">Cancel</a>
+							</td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+				<!-- Modal Footer -->
+			</form>
+		</div>
+		<!-- Edit Semester Modal -->
+
+		<!-- Delete Semester Modal -->
+		<div id="modalConfirm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+				<h3 id="myModalLabel">Confirm</h3>
+			</div>
+			<!-- Modal Header -->
+			<br/>
+			<table cellpadding="0" align=center>
+				<tr>
+					<td>&nbsp;</td>
+
+					<td>
+						Are you sure you want to delete this data?
+					</td>	
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+			<br/>
+			<!-- Modal Footer -->
+			<div class="modal-footer">
+				<table cellpadding="0" align=center>
+					<tr>
+						<td></td>
+						<td width="400px" style="text-align:center">
+							
+							<a id="triggerdelete" class="btn btn-warning btn-large" data-dismiss="modal" aria-hidden="true">Delete</a>
+
+							<a class="btn btn-primary btn-large" data-dismiss="modal" aria-hidden="true">Cancel</a>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<!-- Modal Footer -->	
+		</div>
+		<!-- Delete Semester Modal -->
+
+		<!-- Delete All -->
+		<div id="modalConfirm2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+				<h3 id="myModalLabel">Warning!</h3>
+			</div>
+			<!-- Modal Header -->
+			<br/>
+			<table cellpadding="0" align=center>
+				<tr>
+					<td>&nbsp;</td>
+
+					<td>
+						You are about to delete all records. Do you want to continue this operation?
+					</td>	
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+			<br/>
+			<!-- Modal Footer -->
+			<div class="modal-footer">
+				<table cellpadding="0" align=center>
+					<tr>
+						<td></td>
+						<td width="400px" style="text-align:center">
+							
+							<a id="triggerdelall" class="btn btn-warning btn-large" data-dismiss="modal" aria-hidden="true">Delete</a>
+
+							<a class="btn btn-primary btn-large" data-dismiss="modal" aria-hidden="true">Cancel</a>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<!-- Modal Footer -->	
+		</div>
+		<!-- Delete All -->

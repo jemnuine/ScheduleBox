@@ -16,8 +16,6 @@ class Semester extends CI_Controller {
         //check kung naka-login
 		if($this->session->userdata('is_logged_in')) {
 
-            
-
 			$data = array (
 				'current_user' => $this->session->userdata('displayname'),
 				'current_username' => $this->session->userdata('username'),
@@ -91,6 +89,8 @@ class Semester extends CI_Controller {
             if($query = $this->schedule_model->list_semester()) {
                 $data['records'] = $query;
             } 
+
+
 
             if(!$data['records']){
                 $add_sem_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>The record is existing!</div>';
