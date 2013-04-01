@@ -24,6 +24,12 @@ class Courses extends CI_Controller {
 
 			);
 
+			$this->load->model('schedule_model');
+
+            if($query = $this->schedule_model->list_department()) {
+                $data['records'] = $query;
+            }
+
 			$this->load->view('includes/nocache');
 	        $this->load->view('includes/header2');
 	        $this->load->view('courses_view', $data);

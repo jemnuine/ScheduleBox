@@ -49,11 +49,11 @@
 			<div class="row-fluid">
 				<div class="span9">
 					
-					<button class="btn btn-primary pull-right" type="button"><i class="icon-print icon-white"></i> Print Page</button>
+					<button class="btn btn-primary pull-right" type="button" onClick="window.print()"><i class="icon-print icon-white"></i> Print Page</button>
 					<b class="pull-right">&nbsp;</b>
 					<button id="addbutton" class="btn btn-success" type="button"><i class="icon-plus icon-white"></i> New</button>
 					<b class="pull-right">&nbsp;</b>
-					<button class="btn btn-danger pull-right" type="button"><i class="icon-remove icon-white"></i> Delete All</button>
+					<button class="delall btn btn-danger pull-right" type="button"><i class="icon-remove icon-white"></i> Delete All</button>
 					<table class="table table-striped">
 						<thead>
 							<td>
@@ -67,48 +67,23 @@
 								Department
 							</td>	
 						</thead>
-						<tr>
+						<?php if(isset($records)) : foreach($records as $row) : ?>
+							<tr>
+								<td><?php echo $row->course_code;?></td>
+								<td><?php echo $row->course_desc;?></td>
+								<td><?php echo $row->department_desc;?></td>
+								<td class="">
+									<a id="<?php echo $row->course_id;?>" style="cursor:pointer;" class="deletebutton pull-right"><i class="icon-trash"></i></a>
+									<a id="<?php echo $row->course_id;?>" style="cursor:pointer;" class="editbutton pull-right"><i class="icon-pencil"></i></a>	
+								</td>
+							</tr>
+							<?php endforeach;?>
 
-							<td>
-								Sample
-
-							</td>
-							<td>
-								Sample
-							</td>
-							<td>
-								Sample
-							</td>
-							<td class="">
-								<a href="" class="pull-right"><i class="icon-trash"></i></a>
-								<a href="" class="pull-right"><i class="icon-pencil"></i></a>
-								
-							</td>
-
-						</tr>
-						<tr>
-
-							<td>
-								Sample
-
-							</td>
-							<td>
-								Sample
-							</td>
-							<td>
-								Sample
-							</td>
-							<td class="">
-								<a href="" class="pull-right"><i class="icon-trash"></i></a>
-								<a href="" class="pull-right"><i class="icon-pencil"></i></a>
-								
-							</td>
-
-						</tr>
-
-
+						<?php endif; ?>
 
 					</table>
+					<?php if(!isset($records)) echo '<div class="alert alert-info" align="center">No Records Yet!</div>'?>
+
 				</div>
 
 				<div class="span3">
@@ -144,7 +119,7 @@
 		</div>
 		<!-- Container Fluid -->
 
-		<!-- Add Semester Modal -->
+		<!-- Add Course Modal -->
 		<div id="modalAddCourse" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<!-- Modal Header -->
 			<div class="modal-header">
@@ -167,20 +142,29 @@
 						<td>&nbsp;</td>
 						<td><input type='text' name='add_course_desc' id='add_course_desc' size='25' /></td>
 					</tr>
+					
 					<tr>
+
 						<td>Department: </td>
 						<td>&nbsp;</td>
 						<td>
 							<select>
-							  <option>1</option>
-							  <option>2</option>
-							  <option>3</option>
-							  <option>4</option>
-							  <option>5</option>
+								<?php if(isset($records)) : foreach($records as $row) : ?>
+								<option value="<?php echo $row->department_desc;?>"><?php echo $row->department_desc;?></option>
+								<?php endforeach;?>
+								
+
 							</select>
 						</td>
 					</tr>
 					
+					<?php endif; ?>
+					<tr>
+						<td>
+							<?php if(!isset($records)) echo "<b style='font-size:10px'>* No Department Records yet! To add, <a href='<?php echo base_url();?>index.php/departments'>Click Here</a></b>";?>
+						</td>
+						
+					</tr>	
 				</table>
 
 				<!-- Modal Footer -->

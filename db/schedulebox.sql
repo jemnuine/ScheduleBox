@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 01, 2013 at 06:08 PM
+-- Generation Time: Apr 01, 2013 at 06:48 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `department` (
   `department_desc` varchar(255) NOT NULL,
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`department_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `department`
@@ -146,7 +146,8 @@ CREATE TABLE IF NOT EXISTS `department` (
 
 INSERT INTO `department` (`department_id`, `department_code`, `department_desc`, `userid`) VALUES
 (6, 'ewrewr', 'werwer', 18),
-(7, 'COE', 'College of Engot', 18);
+(7, 'COE', 'College of Engot', 18),
+(15, 'CoEd', 'College of Education', 1);
 
 -- --------------------------------------------------------
 
