@@ -210,6 +210,8 @@
 						<td><input type='text' name='editDesc' id='editDesc' size='25' /></td>
 					</tr>
 					<tr>
+						<td>Department: </td>
+						<td>&nbsp;</td>
 						<td>
 							<select name='editDeptDesc' id='editDeptDesc'>
 								<?php if(isset($record)) : foreach($record as $row) : ?>

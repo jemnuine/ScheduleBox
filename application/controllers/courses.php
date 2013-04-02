@@ -174,15 +174,23 @@ class Courses extends CI_Controller {
             echo implode('', $data['ddesc']);
         } else {
 
-            $code = $this->input->post('editCode');
-            $desc = $this->input->post('editDesc');
-            $ddesc = $this->input->post('editDeptDesc');
+        	$this->form_validation->set_rules('editCode','Course Code','trim|required');
+        	$this->form_validation->set_rules('editDesc','Course Description','trim|required');
+        
+        	if($this->form_validation->run() == TRUE) {
+	            $code = $this->input->post('editCode');
+	            $desc = $this->input->post('editDesc');
+	            $ddesc = $this->input->post('editDeptDesc');
 
-            //kinuha ung session ng dept id
-            $course_id = $this->session->userdata('dataid');
-            $this->course_model->update_course($course_id, $code, $desc, $ddesc);
-            echo $course_id. $code. $desc. $ddesc;
-            redirect(base_url().'index.php/courses');
+	            //kinuha ung session ng dept id
+	            $course_id = $this->session->userdata('dataid');
+	            $this->course_model->update_course($course_id, $code, $desc, $ddesc);
+	            echo $course_id. $code. $desc. $ddesc;
+	            redirect(base_url().'index.php/courses');
+	        }
+	        else {
+	        	redirect(base_url().'index.php/courses');
+	        }
         }
     }
 
@@ -195,7 +203,6 @@ class Courses extends CI_Controller {
     }
 
     public function delete_all_department () {
-
         $this->load->model('course_model');
         $this->course_model->delete_all_course();
         redirect(base_url().'index.php/courses');

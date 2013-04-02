@@ -134,10 +134,6 @@ class Semester extends CI_Controller {
 
         //check kung ajax request
         if($this->input->post('ajax')) {
-            
-
-
-
             //ni-recycle ko lng ung sa addsem na modal trigger
             $add_sem_error_action = "$('#modalEditSemester').modal('show');"; 
 
@@ -168,13 +164,25 @@ class Semester extends CI_Controller {
 
         } else {
 
-            $sem = $this->input->post('editsemester');
-            $year = $this->input->post('edityear');
+            $this->form_validation->set_rules('editsemester','Semester','trim|required');
+            $this->form_validation->set_rules('edityear','Year','trim|required|greater_than[1997]|less_than[2100]');
+        
 
-            //kinuha ung session ng curriculum id
-            $curriculum_id = $this->session->userdata('dataid');
-            $this->semester_model->update_semester($curriculum_id, $sem, $year);
-            redirect(base_url().'index.php/semester');
+            if($this->form_validation->run() == TRUE) {
+
+                $sem = $this->input->post('editsemester');
+                $year = $this->input->post('edityear');
+
+                //kinuha ung session ng curriculum id
+                $curriculum_id = $this->session->userdata('dataid');
+                $this->semester_model->update_semester($curriculum_id, $sem, $year);
+                redirect(base_url().'index.php/semester');
+            }
+            else
+            {
+                redirect(base_url().'index.php/semester');   
+            }
+
         }
 
     }

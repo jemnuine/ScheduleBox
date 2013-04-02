@@ -76,12 +76,10 @@ class Course_model extends CI_Model {
 
         //if may record
         if($records) {
-            return false;
-            
+            return false;   
         }
 
         if($id != '') {
-            
             $data = array (
                 'course_code' => $code,
                 'course_desc' => $desc,

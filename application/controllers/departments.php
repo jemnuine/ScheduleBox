@@ -159,14 +159,23 @@ class Departments extends CI_Controller {
             echo implode('', $data['ddesc']);
         } else {
 
-            $code = $this->input->post('editCode');
-            $desc = $this->input->post('editDesc');
+            $this->form_validation->set_rules('editCode','Department Code','trim|required');
+            $this->form_validation->set_rules('editDesc','Department Description','trim|required');
+            
+            if($this->form_validation->run() == TRUE) {
 
-            //kinuha ung session ng dept id
-            $department_id = $this->session->userdata('dataid');
-            $this->department_model->update_department($department_id, $code, $desc);
-            echo $department_id.$code.$desc;
-            redirect(base_url().'index.php/departments');
+                $code = $this->input->post('editCode');
+                $desc = $this->input->post('editDesc');
+
+                //kinuha ung session ng dept id
+                $department_id = $this->session->userdata('dataid');
+                $this->department_model->update_department($department_id, $code, $desc);
+                echo $department_id.$code.$desc; //for debugging purpose
+                redirect(base_url().'index.php/departments');
+            }
+            else {
+                redirect(base_url().'index.php/departments');
+            }
         }
 
     }
