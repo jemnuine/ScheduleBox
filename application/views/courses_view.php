@@ -149,11 +149,9 @@
 						<td>&nbsp;</td>
 						<td>
 							<select>
-								<?php if(isset($records)) : foreach($records as $row) : ?>
+								<?php if(isset($record)) : foreach($record as $row) : ?>
 								<option value="<?php echo $row->department_desc;?>"><?php echo $row->department_desc;?></option>
 								<?php endforeach;?>
-								
-
 							</select>
 						</td>
 					</tr>
@@ -161,7 +159,7 @@
 					<?php endif; ?>
 					<tr>
 						<td>
-							<?php if(!isset($records)) echo "<b style='font-size:10px'>* No Department Records yet! To add, <a href='<?php echo base_url();?>index.php/departments'>Click Here</a></b>";?>
+							<?php if(!isset($records)) echo '<b style="font-size:10px">* No Department Records yet! To add, <a href="' . base_url() . 'index.php/departments">Click Here</a></b>';?>
 						</td>
 						
 					</tr>	

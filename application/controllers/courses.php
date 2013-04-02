@@ -26,14 +26,19 @@ class Courses extends CI_Controller {
 
 			$this->load->model('course_model');
 
-            if($query = $this->course_model->list_department()) {
+            if($query = $this->course_model->list_course()) {
                 $data['records'] = $query;
             }
 
+            if($query = $this->course_model->list_course_dept()) {
+                $data['record'] = $query;
+            }
+
+
 			$this->load->view('includes/nocache');
 	        $this->load->view('includes/header2');
-	        $this->load->view('departments_view', $data);
-	        $this->load->view('includes/department_footer');
+	        $this->load->view('courses_view', $data);
+	        $this->load->view('includes/course_footer');
 
 			
 		}
@@ -87,7 +92,7 @@ class Courses extends CI_Controller {
 
             $this->load->model('course_model');
 
-            if($query = $this->course_model->list_department()) {
+            if($query = $this->course_model->list_course()) {
                 $data['records'] = $query;
             }
 
@@ -108,8 +113,8 @@ class Courses extends CI_Controller {
 
 			$this->load->view('includes/nocache');
 			$this->load->view('includes/header2');
-    		$this->load->view('departments_view', $data);
-    		$this->load->view('includes/department_footer', $data);
+    		$this->load->view('courses_view', $data);
+    		$this->load->view('includes/course_footer', $data);
 
             
         }

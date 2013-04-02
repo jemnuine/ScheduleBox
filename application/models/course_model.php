@@ -26,10 +26,18 @@ class Course_model extends CI_Model {
         return true;
     }
 
-    public function list_department() {
+    public function list_course() {
 
-        $query = $this->db->query('SELECT * FROM department WHERE userid='.$this->session->userdata('userid') . ' ORDER BY department_code ASC');
-        return $query->result();
+        $query = $this->db->query('SELECT * FROM course WHERE userid='.$this->session->userdata('userid') . ' ORDER BY course_code ASC');
+        $data = $query->result();
+        return $data;
+    }
+
+    public function list_course_dept() {
+
+        $query = $this->db->query('SELECT department_desc FROM department WHERE userid='.$this->session->userdata('userid'));
+        $data = $query->result();
+        return $data;
     }
 
     public function get_dept_code($param) {
