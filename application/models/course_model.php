@@ -30,8 +30,7 @@ class Course_model extends CI_Model {
     public function list_course() {
 
         $query = $this->db->query('SELECT * FROM course WHERE userid='.$this->session->userdata('userid') . ' ORDER BY course_code ASC');
-        $data = $query->result();
-        return $data;
+        return $query->result();
     }
 
     public function list_course_dept() {
@@ -41,46 +40,56 @@ class Course_model extends CI_Model {
         return $data;
     }
 
-    public function get_dept_code($param) {
+    public function get_course_code($param) {
 
-        $this->db->where('department_id', $param);
-        $this->db->select('department_code');
-        $query = $this->db->get('department');
+        $this->db->where('course_id', $param);
+        $this->db->select('course_code');
+        $query = $this->db->get('course');
+        return $query->row_array();
+    }
+
+    public function get_course_desc($param) {
+
+        $this->db->where('course_id', $param);
+        $this->db->select('course_desc');
+        $query = $this->db->get('course');
         return $query->row_array();
     }
 
     public function get_dept_desc($param) {
 
-        $this->db->where('department_id', $param);
+        $this->db->where('course_id', $param);
         $this->db->select('department_desc');
-        $query = $this->db->get('department');
+        $query = $this->db->get('course');
         return $query->row_array();
     }
 
 
-    public function update_department($id, $code, $desc) {
+    public function update_course($id, $code, $desc, $ddesc) {
 
         //check if may duplicate row
         $query = $this->db->query (
-            'SELECT department_code, department_desc FROM department WHERE userid=' . $this->session->userdata('userid') .
-            ' AND department_code="' . $code . '" OR department_desc="' . $desc . '"'
+            'SELECT course_code, course_desc FROM course WHERE userid=' . $this->session->userdata('userid') .
+            ' AND course_code="' . $code . '" AND course_desc="' . $desc . '"'
             );
         $records = $query->result();
 
         //if may record
         if($records) {
             return false;
+            
         }
 
         if($id != '') {
-
+            
             $data = array (
-                'department_code' => $code,
-                'department_desc' => $desc
+                'course_code' => $code,
+                'course_desc' => $desc,
+                'department_desc' => $ddesc
             );
 
-            $this->db->where('department_id',$id);
-            $this->db->update('department', $data);
+            $this->db->where('course_id',$id);
+            $this->db->update('course', $data);
 
         } else {
 

@@ -42,18 +42,18 @@
 		        };
 
 		        var request = $.ajax({
-		        	url: "<?php echo base_url();?>index.php/semester/list_edit_semester",
+		        	url: "<?php echo base_url();?>index.php/courses/list_edit_course",
 		        	type: 'POST',
 		        	data: form_data
 		        });
 
 		        request.done(function (response, textStatus, jqXHR){
-			        $('#modalEditSemester').modal('show');
+			        $('#modalEditCourse').modal('show');
 					var temp = new Array();
 					temp = response.split("*");
-			       	$('#editsemester').val(temp[0]);
-			       	$('#edityear').val(temp[1]);
-			       	$('#editselectsemester').val(temp[0]);
+			       	$('#editCode').val(temp[0]);
+			       	$('#editDesc').val(temp[1]);
+			       	$('#editDeptDec').val(temp[2]);
 			    });
 				    	
 			});

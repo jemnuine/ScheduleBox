@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 02, 2013 at 02:45 AM
+-- Generation Time: Apr 02, 2013 at 05:40 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -73,7 +73,15 @@ CREATE TABLE IF NOT EXISTS `course` (
   `course_code` varchar(10) NOT NULL,
   PRIMARY KEY (`course_id`),
   KEY `fk_course_users1_idx` (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `course`
+--
+
+INSERT INTO `course` (`course_id`, `course_desc`, `department_desc`, `userid`, `course_code`) VALUES
+(6, 'Industrial Engineering', 'College of Engineering', 1, 'BSIE'),
+(7, 'Computer Engineering', 'College of Engineering', 1, 'BSCoE');
 
 -- --------------------------------------------------------
 
@@ -139,16 +147,17 @@ CREATE TABLE IF NOT EXISTS `department` (
   `department_desc` varchar(255) NOT NULL,
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`department_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `department`
 --
 
 INSERT INTO `department` (`department_id`, `department_code`, `department_desc`, `userid`) VALUES
-(6, 'ewrewr', 'werwer', 18),
+(6, 'BSIEE', 'Industrial Engineering', 18),
 (7, 'COE', 'College of Engot', 18),
-(21, 'CoEd', 'College of Education', 1);
+(22, 'CoEng', 'College of Engineering', 1),
+(24, 'CoE', 'College of Education', 1);
 
 -- --------------------------------------------------------
 

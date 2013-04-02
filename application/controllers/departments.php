@@ -7,12 +7,13 @@ class Departments extends CI_Controller {
  		parent::__construct();
  	}
 
- 	public function index (
-	 		$add_dept_error_msg = NULL, 
-	 		$add_dept_error_action = NULL, 
-	 		$reg_error_msg = NULL
- 		) {
+ 	public function index () {
 
+        
+        $add_dept_error_msg = NULL;
+        $add_dept_error_action = NULL; 
+        $reg_error_msg = NULL;
+        
         //check kung naka-login
 		if($this->session->userdata('is_logged_in')) {
 
@@ -60,18 +61,17 @@ class Departments extends CI_Controller {
 
 
             $this->load->model('department_model');
+
             $this->department_model->add_department($data);
 
-            $data = array (
-                'current_user' => $this->session->userdata('displayname'),
-                'current_username' => $this->session->userdata('username'),
-            	'add_dept_error_msg' => NULL,
-            	'add_dept_error_action' => NULL //wala lang xD
-            );
+            $this->session->unset_userdata('add_dept_error_msg');
+            $this->session->unset_userdata('add_dept_error_action');
 
-            redirect(base_url() . 'index.php/departments', 'refresh');   
+            redirect(base_url() . 'index.php/departments', 'refresh');  
+            
             
         }
+
         else
         {
 
@@ -89,6 +89,8 @@ class Departments extends CI_Controller {
 
             if($query = $this->department_model->list_department()) {
                 $data['records'] = $query;
+            } else {
+                $data['records'] = $query;
             }
 
             if(!$data['records']) {
@@ -100,33 +102,30 @@ class Departments extends CI_Controller {
                     'add_dept_error_msg' => $add_dept_error_msg,
                     'add_dept_error_action' => $add_dept_error_action
                 );
+
+                $this->session->set_userdata($data);
             }
              
-	        
-
-            $this->session->set_userdata($data);
-
-			$this->load->view('includes/nocache');
-			$this->load->view('includes/header2');
-    		$this->load->view('departments_view', $data);
-    		$this->load->view('includes/department_footer', $data);
+            $this->load->view('includes/nocache');
+            $this->load->view('includes/header2');
+            $this->load->view('departments_view', $data);
+            $this->load->view('includes/department_footer', $data);
 
             
         }
+        
     }
 
     public function list_edit_department (
             $add_dept_error_msg = NULL, 
-            $add_dept_error_action = "$('#modalEditSemester').modal('show');", 
+            $add_dept_error_action = "$('#modalEditDepartment').modal('show');", 
             $reg_error_msg = NULL
 
         ) {
 
         $data = array (
-                'department_code' => $this->input->post('addCode'),
-                'department_desc' => $this->input->post('addDescription'),
-                'userid' => $this->session->userdata('userid')
-            );
+            'userid' => $this->session->userdata('userid')
+        );
 
 
         $this->load->model('department_model');
@@ -166,6 +165,7 @@ class Departments extends CI_Controller {
             //kinuha ung session ng dept id
             $department_id = $this->session->userdata('dataid');
             $this->department_model->update_department($department_id, $code, $desc);
+            echo $department_id.$code.$desc;
             redirect(base_url().'index.php/departments');
         }
 

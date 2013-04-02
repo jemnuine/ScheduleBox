@@ -13,7 +13,7 @@ class Department_model extends CI_Model {
         //check if may duplicate row
         $query = $this->db->query (
             'SELECT * FROM department WHERE userid=' . $this->session->userdata('userid') .
-            ' AND department_code="' . $data['department_code'] . '" AND department_desc="' . $data['department_desc'] . '"'
+            ' AND department_code="' . $data['department_code'] . '" OR department_desc="' . $data['department_desc'] . '"'
             );
         $records = $query->result();
 
@@ -54,7 +54,7 @@ class Department_model extends CI_Model {
         //check if may duplicate row
         $query = $this->db->query (
             'SELECT department_code, department_desc FROM department WHERE userid=' . $this->session->userdata('userid') .
-            ' AND department_code="' . $code . '" OR department_desc="' . $desc . '"'
+            ' AND department_code="' . $code . '" AND department_desc="' . $desc . '"'
             );
         $records = $query->result();
 
@@ -73,6 +73,17 @@ class Department_model extends CI_Model {
             $this->db->where('department_id',$id);
             $this->db->update('department', $data);
 
+            //cascade edit
+            $query = $this->db->query('SELECT department_desc FROM department WHERE userid='.$this->session->userdata('userid') . ' AND department_id=' . $id);
+            $desc = $query->result();
+            
+            foreach ($desc as $row) {
+                $a = $row->department_desc;
+            } 
+
+            $this->db->where('department_id',$id);
+            $this->db->update('department', $data);
+
         } else {
 
             echo 'Oops! Something is wrong in updating Department :(';
@@ -84,6 +95,7 @@ class Department_model extends CI_Model {
         if($id != '') {
             $query = $this->db->query('SELECT department_desc FROM department WHERE userid='.$this->session->userdata('userid') . ' AND department_id=' . $id);
             $desc = $query->result();
+
             foreach ($desc as $row) {
                 $a = $row->department_desc;
             } 

@@ -135,12 +135,12 @@
 					<tr>
 						<td>Course Code: </td>
 						<td>&nbsp;</td>
-						<td><input type='text' name='add_course_code' id='addCode' size='25' /></td>
+						<td><input type='text' name='addCode' id='addCode' size='25' /></td>
 					</tr>
 					<tr>
 						<td>Course Description: </td>
 						<td>&nbsp;</td>
-						<td><input type='text' name='add_course_desc' id='addDesc' size='25' /></td>
+						<td><input type='text' name='addDesc' id='addDesc' size='25' /></td>
 					</tr>
 					
 					<tr>
@@ -182,4 +182,60 @@
 
 			</form>
 		</div>
-		<!-- Add Semester Modal -->
+		<!-- Add Course Modal -->
+
+		<!-- Edit Course Modal -->
+		<div id="modalEditCourse" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+				<h3 id="myModalLabel">Course </h3>
+			</div>
+			<!-- Modal Header -->
+			<?php if(!is_null($add_course_error_msg)) echo $add_course_error_msg;?>  
+			<br/>
+			<form action='<?php echo base_url();?>index.php/courses/list_edit_course' method='post' name='register'>
+				<!-- Modal Content -->
+				
+
+				<table cellpadding="0" align=center>
+					<tr>
+						<td>Course Code: </td>
+						<td>&nbsp;</td>
+						<td><input type='text' name='editCode' id='editCode' size='25' /></td>
+					</tr>
+					<tr>
+						<td>Course Description: </td>
+						<td>&nbsp;</td>
+						<td><input type='text' name='editDesc' id='editDesc' size='25' /></td>
+					</tr>
+					<tr>
+						<td>
+							<select name='editDeptDesc' id='editDeptDesc'>
+								<?php if(isset($record)) : foreach($record as $row) : ?>
+								<option value="<?php echo $row->department_desc;?>"><?php echo $row->department_desc;?></option>
+								<?php endforeach;?>
+							</select>
+							<?php endif;?>
+						</td>
+					</tr>
+					
+				</table>
+
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<table cellpadding="0" align=center>
+						<tr>
+							<td></td>
+							<td width="400px" style="text-align:center">
+								<input type="submit" value="Save" class="btn btn-warning btn-large"/>
+								<a class="btn btn-primary btn-large" data-dismiss="modal" aria-hidden="true">Cancel</a>
+							</td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+				<!-- Modal Footer -->
+			</form>
+		</div>
+		<!-- Edit Course Modal -->
