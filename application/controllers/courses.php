@@ -194,7 +194,7 @@ class Courses extends CI_Controller {
         }
     }
 
-    public function delete_department ($id = NULL) {
+    public function delete_course ($id = NULL) {
 
         $this->load->model('course_model');
         $this->course_model->delete_course($id);
@@ -202,7 +202,7 @@ class Courses extends CI_Controller {
         return;
     }
 
-    public function delete_all_department () {
+    public function delete_all_course () {
         $this->load->model('course_model');
         $this->course_model->delete_all_course();
         redirect(base_url().'index.php/courses');

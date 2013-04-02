@@ -68,7 +68,7 @@
 			});
 
 			$("#triggerdelete").click(function() {
-		        window.location.href = "<?php echo base_url();?>index.php/semester/delete_semester/" + deleteid;				    	
+		        window.location.href = "<?php echo base_url();?>index.php/courses/delete_course/" + deleteid;				    	
 			});
 
 			$(".delall").click(function() {
@@ -77,7 +77,7 @@
 			});
 
 			$("#triggerdelall").click(function() {
-		        window.location.href = "<?php echo base_url();?>index.php/semester/delete_all_semester";				    	
+		        window.location.href = "<?php echo base_url();?>index.php/courses/delete_all_course";				    	
 			});
 			
 			<?php if(!is_null($add_course_error_action)) echo $add_course_error_action;?>

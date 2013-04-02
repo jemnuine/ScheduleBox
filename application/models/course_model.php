@@ -95,29 +95,35 @@ class Course_model extends CI_Model {
         }
     }
 
-    public function delete_department($id) {
+    public function delete_course($id) {
         
         if($id != '') {
 
-            $this->db->where('department_id',$id);
-            $this->db->delete('department');
-
-            $query = $this->db->query('SELECT department_desc FROM department WHERE userid='.$this->session->userdata('userid') . ' AND department_id=' . $id);
-            $desc = $query->result();
-            //cascade deletion
-            $this->db->where('department_desc', $desc['department_desc']);
+            $this->db->where('course_id',$id);
             $this->db->delete('course');
+
+
+            $query = $this->db->query('SELECT course_code FROM course WHERE userid='.$this->session->userdata('userid') . ' AND course_id=' . $id);
+            $code = $query->result();
+
+            foreach ($code as $row) {
+                $a = $row->course_code;
+            }
+
+            //cascade deletion
+            $this->db->where('course_code', $a);
+            $this->db->delete('section');
 
         } else {
 
-            echo 'Oops! Something is wrong in deleting semester :(';
+            echo 'Oops! Something is wrong in deleting course :(';
         }
     }
 
-    public function delete_all_department() {
+    public function delete_all_course() {
         $this->db->where('userid', $this->session->userdata('userid'));
-        $this->db->delete('department'); 
+        $this->db->delete('course'); 
     }
 
-    /********** End Department Functions **********/
+    /********** End course Functions **********/
 }

@@ -241,3 +241,83 @@
 			</form>
 		</div>
 		<!-- Edit Course Modal -->
+
+		<!-- Delete Course Modal -->
+		<div id="modalConfirm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+				<h3 id="myModalLabel">Confirm</h3>
+			</div>
+			<!-- Modal Header -->
+			<br/>
+			<table cellpadding="0" align=center>
+				<tr>
+					<td>&nbsp;</td>
+
+					<td>
+						Are you sure you want to delete this data?
+					</td>	
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+			<br/>
+			<!-- Modal Footer -->
+			<div class="modal-footer">
+				<table cellpadding="0" align=center>
+					<tr>
+						<td></td>
+						<td width="400px" style="text-align:center">
+							
+							<a id="triggerdelete" class="btn btn-warning btn-large" data-dismiss="modal" aria-hidden="true">Delete</a>
+
+							<a class="btn btn-primary btn-large" data-dismiss="modal" aria-hidden="true">Cancel</a>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<!-- Modal Footer -->	
+		</div>
+		<!-- Delete Course Modal -->
+
+		<!-- Delete All -->
+		<div id="modalConfirm2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+				<h3 id="myModalLabel">Warning!</h3>
+			</div>
+			<!-- Modal Header -->
+			<br/>
+			<table cellpadding="0" align=center>
+				<tr>
+					<td>&nbsp;</td>
+
+					<td>
+						You are about to delete all records. Do you want to continue this operation?
+					</td>	
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+			<br/>
+			<!-- Modal Footer -->
+			<div class="modal-footer">
+				<table cellpadding="0" align=center>
+					<tr>
+						<td></td>
+						<td width="400px" style="text-align:center">
+							
+							<a id="triggerdelall" class="btn btn-warning btn-large" data-dismiss="modal" aria-hidden="true">Delete</a>
+
+							<a class="btn btn-primary btn-large" data-dismiss="modal" aria-hidden="true">Cancel</a>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<!-- Modal Footer -->	
+		</div>
+		<!-- Delete All -->
