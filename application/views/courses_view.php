@@ -129,18 +129,18 @@
 			<!-- Modal Header -->
 			<?php if(!is_null($add_course_error_msg)) echo $add_course_error_msg;?>  
 			<br/>
-			<form action='<?php echo base_url();?>index.php/' method='post' name='register'>
+			<form action='<?php echo base_url();?>index.php/courses/add_course' method='post' name='register'>
 				<!-- Modal Content -->
 				<table cellpadding="0" align=center>
 					<tr>
 						<td>Course Code: </td>
 						<td>&nbsp;</td>
-						<td><input type='text' name='add_course_code' id='add_course_code' size='25' /></td>
+						<td><input type='text' name='add_course_code' id='addCode' size='25' /></td>
 					</tr>
 					<tr>
 						<td>Course Description: </td>
 						<td>&nbsp;</td>
-						<td><input type='text' name='add_course_desc' id='add_course_desc' size='25' /></td>
+						<td><input type='text' name='add_course_desc' id='addDesc' size='25' /></td>
 					</tr>
 					
 					<tr>
@@ -148,7 +148,7 @@
 						<td>Department: </td>
 						<td>&nbsp;</td>
 						<td>
-							<select>
+							<select name='addDeptDesc' id='addDeptDesc'>
 								<?php if(isset($record)) : foreach($record as $row) : ?>
 								<option value="<?php echo $row->department_desc;?>"><?php echo $row->department_desc;?></option>
 								<?php endforeach;?>
@@ -159,7 +159,7 @@
 					<?php endif; ?>
 					<tr>
 						<td>
-							<?php if(!isset($records)) echo '<b style="font-size:10px">* No Department Records yet! To add, <a href="' . base_url() . 'index.php/departments">Click Here</a></b>';?>
+							<?php if(!isset($record)) echo '<b style="font-size:10px">* No Department Records yet! To add, <a href="' . base_url() . 'index.php/departments">Click Here</a></b>';?>
 						</td>
 						
 					</tr>	

@@ -12,9 +12,10 @@ class Course_model extends CI_Model {
         
         //check if may duplicate row
         $query = $this->db->query (
-            'SELECT * FROM department WHERE userid=' . $this->session->userdata('userid') .
-            ' AND department_code="' . $data['department_code'] . '" AND department_desc="' . $data['department_desc'] . '"'
+            'SELECT * FROM course WHERE userid=' . $this->session->userdata('userid') .
+            ' AND course_code="' . $data['course_code'] . '" OR course_desc="' . $data['course_desc'] . '"'
             );
+
         $records = $query->result();
 
         //if may record
@@ -22,7 +23,7 @@ class Course_model extends CI_Model {
             return false;
         }
 
-        $this->db->insert('department', $data);
+        $this->db->insert('course', $data);
         return true;
     }
 

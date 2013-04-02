@@ -34,7 +34,6 @@ class Courses extends CI_Controller {
                 $data['record'] = $query;
             }
 
-
 			$this->load->view('includes/nocache');
 	        $this->load->view('includes/header2');
 	        $this->load->view('courses_view', $data);
@@ -52,14 +51,15 @@ class Courses extends CI_Controller {
 
  	public function add_course() {
 
-        $this->form_validation->set_rules('addCode','Department Code','trim|required');
-        $this->form_validation->set_rules('addDesc','Department Description','trim|required');
+        $this->form_validation->set_rules('addCode','Course Code','trim|required');
+        $this->form_validation->set_rules('addDesc','Course Description','trim|required');
         
 
         if($this->form_validation->run() == TRUE) {
             $data = array (
-                'department_code' => $this->input->post('addCode'),
-                'department_desc' => $this->input->post('addDesc'),
+                'course_code' => $this->input->post('addCode'),
+                'course_desc' => $this->input->post('addDesc'),
+                'department_desc' => $this->input->post('addDeptDesc'),
                 'userid' => $this->session->userdata('userid')   
             );
 
@@ -81,7 +81,7 @@ class Courses extends CI_Controller {
         {
 
             $add_course_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>' . validation_errors() . '</div>';
-            $add_course_error_action = "$('#modalAddDepartment').modal('show');";
+            $add_course_error_action = "$('#modalAddCourse').modal('show');";
 
             $data = array (
                 'current_user' => $this->session->userdata('displayname'),
@@ -96,9 +96,10 @@ class Courses extends CI_Controller {
                 $data['records'] = $query;
             }
 
+            
             if(!$data['records']) {
                 $add_course_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>The record is existing!</div>';
-                $add_course_error_action = "$('#modalAddDepartment').modal('show');";
+                $add_course_error_action = "$('#modalAddCourse').modal('show');";
                 $data = array (
                     'current_user' => $this->session->userdata('displayname'),
                     'current_username' => $this->session->userdata('username'),
@@ -107,7 +108,9 @@ class Courses extends CI_Controller {
                 );
             }
              
-	        
+	        if($query = $this->course_model->list_course_dept()) {
+                $data['record'] = $query;
+            }
 
             $this->session->set_userdata($data);
 

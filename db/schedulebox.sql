@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 01, 2013 at 06:48 PM
+-- Generation Time: Apr 02, 2013 at 02:45 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -66,13 +66,14 @@ INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activ
 --
 
 CREATE TABLE IF NOT EXISTS `course` (
-  `course_code` varchar(10) NOT NULL,
-  `course_name` varchar(80) NOT NULL,
+  `course_id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_desc` varchar(255) NOT NULL,
   `department_desc` varchar(255) NOT NULL,
   `userid` int(11) NOT NULL,
-  PRIMARY KEY (`course_code`),
+  `course_code` varchar(10) NOT NULL,
+  PRIMARY KEY (`course_id`),
   KEY `fk_course_users1_idx` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -138,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `department` (
   `department_desc` varchar(255) NOT NULL,
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`department_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `department`
@@ -147,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `department` (
 INSERT INTO `department` (`department_id`, `department_code`, `department_desc`, `userid`) VALUES
 (6, 'ewrewr', 'werwer', 18),
 (7, 'COE', 'College of Engot', 18),
-(15, 'CoEd', 'College of Education', 1);
+(21, 'CoEd', 'College of Education', 1);
 
 -- --------------------------------------------------------
 

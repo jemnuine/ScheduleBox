@@ -84,14 +84,14 @@ class Department_model extends CI_Model {
         if($id != '') {
             $query = $this->db->query('SELECT department_desc FROM department WHERE userid='.$this->session->userdata('userid') . ' AND department_id=' . $id);
             $desc = $query->result();
+            foreach ($desc as $row) {
+                $a = $row->department_desc;
+            } 
 
             $this->db->where('department_id',$id);
             $this->db->delete('department');
 
-            foreach ($desc as $row) {
-                $a = $row->department_desc;
-            }       
-
+                  
             //cascade deletion
             $this->db->where('department_desc', $a);
             $this->db->delete('course');
