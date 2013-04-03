@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 02, 2013 at 05:40 AM
+-- Generation Time: Apr 03, 2013 at 03:23 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `course` (
 
 INSERT INTO `course` (`course_id`, `course_desc`, `department_desc`, `userid`, `course_code`) VALUES
 (6, 'Industrial Engineering', 'College of Engineering', 1, 'BSIE'),
-(7, 'Computer Engineering', 'College of Engineering', 1, 'BSCoE');
+(7, 'Computer Engineering', 'College of Engineering', 1, 'BSCoEn');
 
 -- --------------------------------------------------------
 
@@ -219,13 +219,14 @@ CREATE TABLE IF NOT EXISTS `schedules` (
 --
 
 CREATE TABLE IF NOT EXISTS `section` (
-  `section_name` varchar(45) NOT NULL,
+  `section_number` int(11) NOT NULL,
   `year_level` int(1) NOT NULL,
   `course_code` varchar(10) NOT NULL,
   `userid` int(11) NOT NULL,
-  PRIMARY KEY (`section_name`),
+  `section_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`section_id`),
   KEY `fk_section_users1_idx` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
