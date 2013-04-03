@@ -52,7 +52,7 @@
 					<b class="pull-right">&nbsp;</b>
 					<button id="addbutton" class="btn btn-success" type="button"><i class="icon-plus icon-white"></i> New</button>
 					<b class="pull-right">&nbsp;</b>
-					<button class="btn btn-danger pull-right" type="button"><i class="icon-remove icon-white"></i> Delete All</button>
+					<button class="delall btn btn-danger pull-right" type="button"><i class="icon-remove icon-white"></i> Delete All</button>
 					<table class="table table-striped">
 						<thead>
 							<td>Room Name</td>
@@ -63,48 +63,20 @@
 								Capacity
 							</td>	
 						</thead>
-						<tr>
-
-							<td>
-								Sample
-
-							</td>
-							<td>
-								Sample
-							</td>
-							<td>
-								Sample
-							</td>
-							<td class="">
-								<a href="" class="pull-right"><i class="icon-trash"></i></a>
-								<a href="" class="pull-right"><i class="icon-pencil"></i></a>
-								
-							</td>
-
-						</tr>
-						<tr>
-
-							<td>
-								Sample
-
-							</td>
-							<td>
-								Sample
-							</td>
-							<td>
-								Sample
-							</td>
-							<td class="">
-								<a href="" class="pull-right"><i class="icon-trash"></i></a>
-								<a href="" class="pull-right"><i class="icon-pencil"></i></a>
-								
-							</td>
-
-						</tr>
-
-
-
+						<?php if(isset($records)) : foreach($records as $row) : ?>
+							<tr>
+								<td><?php echo $row->room_name;?></td>
+								<td><?php echo $row->room_capacity;?></td>
+								<td><?php echo $row->room_type;?></td>
+								<td class="">
+									<a id="<?php echo $row->room_id;?>" style="cursor:pointer;" class="deletebutton pull-right"><i class="icon-trash"></i></a>
+									<a id="<?php echo $row->room_id;?>" style="cursor:pointer;" class="editbutton pull-right"><i class="icon-pencil"></i></a>	
+								</td>
+							</tr>
+							<?php endforeach;?>
+						<?php endif; ?>
 					</table>
+					<?php if(!isset($records)) echo '<div class="alert alert-info" align="center">No Records Yet!</div>'?>
 				</div>
 
 				<div class="span3">
@@ -156,17 +128,17 @@
 					<tr>
 						<td>Room Name: </td>
 						<td>&nbsp;</td>
-						<td><input type='text' name='add_room_name' id='add_room_name' size='25' /></td>
+						<td><input type='text' name='addRoom' id='addRoom' size='25' /></td>
 					</tr>
 					<tr>
 						<td>Room Type: </td>
 						<td>&nbsp;</td>
-						<td><input type='text' name='add_room_type' id='add_room_type' size='25' /></td>
+						<td><input type='text' name='addType' id='addType' size='25' /></td>
 					</tr>
 					<tr>
 						<td>Room Capacity: </td>
 						<td>&nbsp;</td>
-						<td><input type='text' name='add_room_capacity' id='add_room_capacity' size='25' /></td>
+						<td><input type='text' name='addCapacity' id='addCapacity' size='25' /></td>
 					</tr>
 					
 				</table>
