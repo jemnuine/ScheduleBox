@@ -42,48 +42,48 @@ class Section_model extends CI_Model {
 
     public function get_course_code($param) {
 
-        $this->db->where('course_id', $param);
+        $this->db->where('section_id', $param);
         $this->db->select('course_code');
-        $query = $this->db->get('course');
+        $query = $this->db->get('section');
         return $query->row_array();
     }
 
-    public function get_course_desc($param) {
+    public function get_year_level($param) {
 
-        $this->db->where('course_id', $param);
-        $this->db->select('course_desc');
-        $query = $this->db->get('course');
+        $this->db->where('section_id', $param);
+        $this->db->select('year_level');
+        $query = $this->db->get('section');
         return $query->row_array();
     }
 
-    public function get_dept_desc($param) {
+    public function get_section_number($param) {
 
-        $this->db->where('course_id', $param);
-        $this->db->select('department_desc');
-        $query = $this->db->get('course');
+        $this->db->where('section_id', $param);
+        $this->db->select('section_number');
+        $query = $this->db->get('section');
         return $query->row_array();
     }
 
 
-    public function update_section($id, $code, $desc, $ddesc) {
+    public function update_section($id, $code, $year, $sect) {
 
-        //check if may duplicate row
+        /*//check if may duplicate row
         $query = $this->db->query (
             'SELECT * FROM section WHERE userid=' . $this->session->userdata('userid') .
-            ' AND course_code="' . $code . '" AND course_desc="' . $desc . '"'
+            ' AND course_code="' . $code . '" AND year_level=' . $year . 'AND section_number=' . $sect
             );
         $records = $query->result();
 
         //if may record
         if($records) {
             return false;   
-        }
+        }*/
 
         if($id != '') {
             $data = array (
                 'course_code' => $code,
-                'course_desc' => $desc,
-                'department_desc' => $ddesc
+                'year_level' => $year,
+                'section_number' => $sect
             );
 
             $this->db->where('section_id',$id);
@@ -91,7 +91,8 @@ class Section_model extends CI_Model {
 
         } else {
 
-            echo 'Oops! Something is wrong in updating Department :(';
+            echo 'Oops! Something is wrong in updating Section :(';
+            echo 'onupdate id:'.$id.'code:'.$code.'year:'.$year.'section:'.$sect;
         }
     }
 

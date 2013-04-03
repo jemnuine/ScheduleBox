@@ -134,9 +134,6 @@ class Sections extends CI_Controller {
         ) {
 
         $data = array (
-                'course_code' => $this->input->post('editCourse'),
-                'year_level' => $this->input->post('editLevel'),
-                'section_number' => $this->input->post('editSection'),
                 'userid' => $this->session->userdata('userid')   
             );
 
@@ -151,16 +148,16 @@ class Sections extends CI_Controller {
             //ni-recycle ko lng ung sa addsem na modal trigger
             $add_section_error_action = "$('#modalEditSection').modal('show');"; 
 
-            $query = $this->section_model->get_course_code($course_id);
-            $query2 = $this->section_model->get_year_level($course_id);
-            $query3 = $this->section_model->get_section_number($course_id);
+            $query = $this->section_model->get_course_code($section_id);
+            $query2 = $this->section_model->get_year_level($section_id);
+            $query3 = $this->section_model->get_section_number($section_id);
 
             $data = array (
                 'current_user' => $this->session->userdata('displayname'),
                 'current_username' => $this->session->userdata('username'),
                 'add_section_error_msg' => $add_section_error_msg,
                 'add_section_error_action' => $add_section_error_action,
-                'dataid' => $course_id,
+                'dataid' => $section_id,
                 'ccode' => $query,
                 'year' => $query2,
                 'sect' => $query3
@@ -174,26 +171,21 @@ class Sections extends CI_Controller {
             echo implode('', $data['year']);
             echo '*';
             echo implode('', $data['sect']);
+            
+            
+
         } else {
 
-        	$this->form_validation->set_rules('editCourse','Course Code','trim|required');
-            $this->form_validation->set_rules('editLevel','Year Level','trim|required');
-            $this->form_validation->set_rules('editSection','Section','trim|required');
-        
-        	if($this->form_validation->run() == TRUE) {
+        	
 	            $ccode = $this->input->post('editCode');
 	            $year = $this->input->post('editLevel');
 	            $sect = $this->input->post('editSection');
 
 	            //kinuha ung session ng dept id
-	            $course_id = $this->session->userdata('dataid');
-	            $this->section_model->update_course($course_id, $code, $year, $sect);
-	            echo $course_id. $code. $desc. $ddesc;
+	            $section_id = $this->session->userdata('dataid');
+	            $this->section_model->update_section($section_id, $ccode, $year, $sect);
 	            redirect(base_url().'index.php/sections');
-	        }
-	        else {
-	        	redirect(base_url().'index.php/sections');
-	        }
+	        
         }
     }
 

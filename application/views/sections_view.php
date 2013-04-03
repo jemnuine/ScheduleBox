@@ -52,7 +52,7 @@
 					<b class="pull-right">&nbsp;</b>
 					<button id="addbutton" class="btn btn-success" type="button"><i class="icon-plus icon-white"></i> New</button>
 					<b class="pull-right">&nbsp;</b>
-					<button class="btn btn-danger pull-right" type="button"><i class="icon-remove icon-white"></i> Delete All</button>
+					<button class="delall btn btn-danger pull-right" type="button"><i class="icon-remove icon-white"></i> Delete All</button>
 					<table class="table table-striped">
 						<thead>
 							<td>
@@ -204,14 +204,14 @@
 			<!-- Modal Header -->
 			<?php if(!is_null($add_section_error_msg)) echo $add_section_error_msg;?>  
 			<br/>
-			<form action='<?php echo base_url();?>index.php/sections/add_section' method='post' name='register'>
+			<form action='<?php echo base_url();?>index.php/sections/list_edit_section' method='post' name='register'>
 				<!-- Modal Content -->
 				<table cellpadding="0" align=center>
 					<tr>
 						<td>Course: </td>
 						<td>&nbsp;</td>
 						<td>
-							<select name='editCourse' id='editCourse'>
+							<select name='editCode' id='editCode'>
 								<?php if(isset($record)) : foreach($record as $row) : ?>
 								<option value="<?php echo $row->course_code;?>"><?php echo $row->course_code;?></option>
 								<?php endforeach;?>
