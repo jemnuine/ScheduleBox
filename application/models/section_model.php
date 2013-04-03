@@ -1,18 +1,18 @@
 <?php
 
-class Course_model extends CI_Model {
+class Section_model extends CI_Model {
 
     function __construct() {
         parent:: __construct();
     }
 
-     /********** Begin Course Functions **********/
+     /********** Begin Section Functions **********/
 
     public function add_course($data) {
         
         //check if may duplicate row
         $query = $this->db->query (
-            'SELECT * FROM course WHERE userid=' . $this->session->userdata('userid') .
+            'SELECT * FROM section WHERE userid=' . $this->session->userdata('userid') .
             ' AND course_code="' . $data['course_code'] . '" OR course_desc="' . $data['course_desc'] . '"'
             );
 
@@ -27,15 +27,15 @@ class Course_model extends CI_Model {
         return true;
     }
 
-    public function list_course() {
+    public function list_section() {
 
-        $query = $this->db->query('SELECT * FROM course WHERE userid='.$this->session->userdata('userid') . ' ORDER BY course_code ASC');
+        $query = $this->db->query('SELECT * FROM section WHERE userid='.$this->session->userdata('userid') . ' ORDER BY course_code ASC');
         return $query->result();
     }
 
-    public function list_course_dept() {
+    public function list_section_course() {
 
-        $query = $this->db->query('SELECT department_desc FROM department WHERE userid='.$this->session->userdata('userid'));
+        $query = $this->db->query('SELECT course_code FROM course WHERE userid='.$this->session->userdata('userid'));
         $data = $query->result();
         return $data;
     }

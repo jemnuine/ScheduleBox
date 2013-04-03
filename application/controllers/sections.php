@@ -26,18 +26,18 @@ class Sections extends CI_Controller {
 
 			$this->load->model('section_model');
 
-            if($query = $this->section_model->list_course()) {
+            if($query = $this->section_model->list_section()) {
                 $data['records'] = $query;
             }
 
-            if($query = $this->section_model->list_course_dept()) {
+            if($query = $this->section_model->list_section_course()) {
                 $data['record'] = $query;
             }
 
 			$this->load->view('includes/nocache');
 	        $this->load->view('includes/header2');
-	        $this->load->view('courses_view', $data);
-	        $this->load->view('includes/course_footer');
+	        $this->load->view('sections_view', $data);
+	        $this->load->view('includes/section_footer');
 
 			
 		}
@@ -51,15 +51,16 @@ class Sections extends CI_Controller {
 
  	public function add_section() {
 
-        $this->form_validation->set_rules('addCode','Course Code','trim|required');
-        $this->form_validation->set_rules('addDesc','Course Description','trim|required');
+        $this->form_validation->set_rules('addCourse','Course Code','trim|required');
+        $this->form_validation->set_rules('addLevel','Year Level','trim|required');
+        $this->form_validation->set_rules('addSection','Section','trim|required');
         
 
         if($this->form_validation->run() == TRUE) {
             $data = array (
-                'course_code' => $this->input->post('addCode'),
-                'course_desc' => $this->input->post('addDesc'),
-                'department_desc' => $this->input->post('addDeptDesc'),
+                'course_code' => $this->input->post('addCourse'),
+                'year_level' => $this->input->post('addLevel'),
+                'section_number' => $this->input->post('addSection'),
                 'userid' => $this->session->userdata('userid')   
             );
 
@@ -74,14 +75,14 @@ class Sections extends CI_Controller {
             	'add_section_error_action' => NULL //wala lang xD
             );
 
-            redirect(base_url() . 'index.php/courses', 'refresh');   
+            redirect(base_url() . 'index.php/sections', 'refresh');   
             
         }
         else
         {
 
             $add_section_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>' . validation_errors() . '</div>';
-            $add_section_error_action = "$('#modalAddCourse').modal('show');";
+            $add_section_error_action = "$('#modalAddSection').modal('show');";
 
             $data = array (
                 'current_user' => $this->session->userdata('displayname'),
@@ -92,7 +93,7 @@ class Sections extends CI_Controller {
 
             $this->load->model('section_model');
 
-            if($query = $this->section_model->list_course()) {
+            if($query = $this->section_model->list_section()) {
                 $data['records'] = $query;
             } else {
             	$data['records'] = $query;
@@ -100,7 +101,7 @@ class Sections extends CI_Controller {
 
             if(!$data['records']) {
                 $add_section_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>The record is existing!</div>';
-                $add_section_error_action = "$('#modalAddCourse').modal('show');";
+                $add_section_error_action = "$('#modalAddSection').modal('show');";
                 $data = array (
                     'current_user' => $this->session->userdata('displayname'),
                     'current_username' => $this->session->userdata('username'),
@@ -109,7 +110,7 @@ class Sections extends CI_Controller {
                 );
             }
             
-	        if($query = $this->section_model->list_course_dept()) {
+	        if($query = $this->section_model->list_section_course()) {
                 $data['record'] = $query;
             }
 
@@ -133,8 +134,8 @@ class Sections extends CI_Controller {
 
         $data = array (
                 'course_code' => $this->input->post('editCode'),
-                'course_desc' => $this->input->post('editDesc'),
-                'department_desc' => $this->input->post('addDeptDesc'),
+                'year_level' => $this->input->post('editDesc'),
+                'section_number' => $this->input->post('addSection'),
                 'userid' => $this->session->userdata('userid')
             );
 
@@ -150,7 +151,7 @@ class Sections extends CI_Controller {
             $add_section_error_action = "$('#modalEditDepartment').modal('show');"; 
 
             $query = $this->section_model->get_course_code($course_id);
-            $query2 = $this->section_model->get_course_desc($course_id);
+            $query2 = $this->section_model->get_year_level($course_id);
             $query3 = $this->section_model->get_dept_desc($course_id);
 
             $data = array (
