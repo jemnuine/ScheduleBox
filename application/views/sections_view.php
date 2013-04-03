@@ -194,44 +194,58 @@
 		</div>
 		<!-- Add Semester Modal -->
 
-		<!-- Edit Course Modal -->
-		<div id="modalEditCourse" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<!-- Edit Section Modal -->
+		<div id="modalEditSection" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<!-- Modal Header -->
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
-				<h3 id="myModalLabel">Course </h3>
+				<h3 id="myModalLabel">Edit Section </h3>
 			</div>
 			<!-- Modal Header -->
-			<?php if(!is_null($add_course_error_msg)) echo $add_course_error_msg;?>  
+			<?php if(!is_null($add_section_error_msg)) echo $add_section_error_msg;?>  
 			<br/>
-			<form action='<?php echo base_url();?>index.php/courses/list_edit_course' method='post' name='register'>
+			<form action='<?php echo base_url();?>index.php/sections/add_section' method='post' name='register'>
 				<!-- Modal Content -->
-				
-
 				<table cellpadding="0" align=center>
 					<tr>
-						<td>Course Code: </td>
-						<td>&nbsp;</td>
-						<td><input type='text' name='editCode' id='editCode' size='25' /></td>
-					</tr>
-					<tr>
-						<td>Course Description: </td>
-						<td>&nbsp;</td>
-						<td><input type='text' name='editDesc' id='editDesc' size='25' /></td>
-					</tr>
-					<tr>
-						<td>Department: </td>
+						<td>Course: </td>
 						<td>&nbsp;</td>
 						<td>
-							<select name='editDeptDesc' id='editDeptDesc'>
+							<select name='editCourse' id='editCourse'>
 								<?php if(isset($record)) : foreach($record as $row) : ?>
-								<option value="<?php echo $row->department_desc;?>"><?php echo $row->department_desc;?></option>
+								<option value="<?php echo $row->course_code;?>"><?php echo $row->course_code;?></option>
 								<?php endforeach;?>
 							</select>
-							<?php endif;?>
 						</td>
 					</tr>
-					
+					<tr>
+						<td>Year Level: </td>
+						<td>&nbsp;</td>
+						<td>
+							<select name='editLevel' id='editLevel'>
+							  <option>1</option>
+							  <option>2</option>
+							  <option>3</option>
+							  <option>4</option>
+							  <option>5</option>
+							</select>	
+						</td>
+					</tr>
+					<?php endif; ?>
+					<tr>
+						<td>Section: </td>
+						<td>&nbsp;</td>
+						<td>
+							<select name='editSection' id='editSection'>
+							  <option>1</option>
+							  <option>2</option>
+							  <option>3</option>
+							  <option>4</option>
+							  <option>5</option>
+							</select>
+						</td>
+					</tr>
+
 				</table>
 
 				<!-- Modal Footer -->

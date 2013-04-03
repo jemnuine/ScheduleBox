@@ -94,7 +94,7 @@ class Departments extends CI_Controller {
             }
 
             if(!$data['records']) {
-                $add_dept_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>The record is existing!</div>';
+                //$add_dept_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>The record is existing!</div>';
                 $add_dept_error_action = "$('#modalAddDepartment').modal('show');";
                 $data = array (
                     'current_user' => $this->session->userdata('displayname'),

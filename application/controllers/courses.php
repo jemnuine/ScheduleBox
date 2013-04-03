@@ -99,7 +99,7 @@ class Courses extends CI_Controller {
             }
 
             if(!$data['records']) {
-                $add_course_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>The record is existing!</div>';
+                //$add_course_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>The record is existing!</div>';
                 $add_course_error_action = "$('#modalAddCourse').modal('show');";
                 $data = array (
                     'current_user' => $this->session->userdata('displayname'),

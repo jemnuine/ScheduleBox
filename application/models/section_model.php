@@ -8,12 +8,12 @@ class Section_model extends CI_Model {
 
      /********** Begin Section Functions **********/
 
-    public function add_course($data) {
+    public function add_section($data) {
         
         //check if may duplicate row
         $query = $this->db->query (
             'SELECT * FROM section WHERE userid=' . $this->session->userdata('userid') .
-            ' AND course_code="' . $data['course_code'] . '" OR course_desc="' . $data['course_desc'] . '"'
+            ' AND course_code="' . $data['course_code'] . '" AND year_level=' . $data['year_level'] . ' AND section_number=' . $data['section_number']
             );
 
         $records = $query->result();
@@ -23,7 +23,7 @@ class Section_model extends CI_Model {
             return false;
         }
 
-        $this->db->insert('course', $data);
+        $this->db->insert('section', $data);
         return true;
     }
 
@@ -65,11 +65,11 @@ class Section_model extends CI_Model {
     }
 
 
-    public function update_course($id, $code, $desc, $ddesc) {
+    public function update_section($id, $code, $desc, $ddesc) {
 
         //check if may duplicate row
         $query = $this->db->query (
-            'SELECT course_code, course_desc FROM course WHERE userid=' . $this->session->userdata('userid') .
+            'SELECT * FROM section WHERE userid=' . $this->session->userdata('userid') .
             ' AND course_code="' . $code . '" AND course_desc="' . $desc . '"'
             );
         $records = $query->result();
@@ -86,8 +86,8 @@ class Section_model extends CI_Model {
                 'department_desc' => $ddesc
             );
 
-            $this->db->where('course_id',$id);
-            $this->db->update('course', $data);
+            $this->db->where('section_id',$id);
+            $this->db->update('section', $data);
 
         } else {
 
@@ -95,15 +95,15 @@ class Section_model extends CI_Model {
         }
     }
 
-    public function delete_course($id) {
+    public function delete_section($id) {
         
         if($id != '') {
 
-            $this->db->where('course_id',$id);
-            $this->db->delete('course');
+            $this->db->where('section_id',$id);
+            $this->db->delete('section');
 
 
-            $query = $this->db->query('SELECT course_code FROM course WHERE userid='.$this->session->userdata('userid') . ' AND course_id=' . $id);
+            /*$query = $this->db->query('SELECT course_code FROM course WHERE userid='.$this->session->userdata('userid') . ' AND course_id=' . $id);
             $code = $query->result();
 
             foreach ($code as $row) {
@@ -112,7 +112,7 @@ class Section_model extends CI_Model {
 
             //cascade deletion
             $this->db->where('course_code', $a);
-            $this->db->delete('section');
+            $this->db->delete('section');*/
 
         } else {
 
@@ -120,9 +120,9 @@ class Section_model extends CI_Model {
         }
     }
 
-    public function delete_all_course() {
+    public function delete_all_section() {
         $this->db->where('userid', $this->session->userdata('userid'));
-        $this->db->delete('course'); 
+        $this->db->delete('section'); 
     }
 
     /********** End course Functions **********/

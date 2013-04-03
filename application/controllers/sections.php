@@ -100,7 +100,7 @@ class Sections extends CI_Controller {
             }
 
             if(!$data['records']) {
-                $add_section_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>The record is existing!</div>';
+                //$add_section_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>The record is existing!</div>';
                 $add_section_error_action = "$('#modalAddSection').modal('show');";
                 $data = array (
                     'current_user' => $this->session->userdata('displayname'),
@@ -108,6 +108,7 @@ class Sections extends CI_Controller {
                     'add_section_error_msg' => $add_section_error_msg,
                     'add_section_error_action' => $add_section_error_action
                 );
+
             }
             
 	        if($query = $this->section_model->list_section_course()) {
@@ -118,41 +119,41 @@ class Sections extends CI_Controller {
 
 			$this->load->view('includes/nocache');
 			$this->load->view('includes/header2');
-    		$this->load->view('courses_view', $data);
-    		$this->load->view('includes/course_footer', $data);
+    		$this->load->view('sections_view', $data);
+    		$this->load->view('includes/section_footer', $data);
 
             
         }
     }
 
-    public function list_edit_course (
+    public function list_edit_section (
             $add_section_error_msg = NULL, 
-            $add_section_error_action = "$('#modalEditCourse').modal('show');", 
+            $add_section_error_action = NULL, 
             $reg_error_msg = NULL
 
         ) {
 
         $data = array (
-                'course_code' => $this->input->post('editCode'),
-                'year_level' => $this->input->post('editDesc'),
-                'section_number' => $this->input->post('addSection'),
-                'userid' => $this->session->userdata('userid')
+                'course_code' => $this->input->post('editCourse'),
+                'year_level' => $this->input->post('editLevel'),
+                'section_number' => $this->input->post('editSection'),
+                'userid' => $this->session->userdata('userid')   
             );
 
 
         $this->load->model('section_model');
         //kinuha lang ung department id galing sa view
-        $course_id = $this->input->post('dataid');
+        $section_id = $this->input->post('dataid');
 
         //check kung ajax request
         if($this->input->post('ajax')) {
 
             //ni-recycle ko lng ung sa addsem na modal trigger
-            $add_section_error_action = "$('#modalEditDepartment').modal('show');"; 
+            $add_section_error_action = "$('#modalEditSection').modal('show');"; 
 
             $query = $this->section_model->get_course_code($course_id);
             $query2 = $this->section_model->get_year_level($course_id);
-            $query3 = $this->section_model->get_dept_desc($course_id);
+            $query3 = $this->section_model->get_section_number($course_id);
 
             $data = array (
                 'current_user' => $this->session->userdata('displayname'),
@@ -161,8 +162,8 @@ class Sections extends CI_Controller {
                 'add_section_error_action' => $add_section_error_action,
                 'dataid' => $course_id,
                 'ccode' => $query,
-                'cdesc' => $query2,
-                'ddesc' => $query3
+                'year' => $query2,
+                'sect' => $query3
                 
             );
 
@@ -170,43 +171,44 @@ class Sections extends CI_Controller {
             
             echo implode('', $data['ccode']);
             echo '*';
-            echo implode('', $data['cdesc']);
+            echo implode('', $data['year']);
             echo '*';
-            echo implode('', $data['ddesc']);
+            echo implode('', $data['sect']);
         } else {
 
-        	$this->form_validation->set_rules('editCode','Course Code','trim|required');
-        	$this->form_validation->set_rules('editDesc','Course Description','trim|required');
+        	$this->form_validation->set_rules('editCourse','Course Code','trim|required');
+            $this->form_validation->set_rules('editLevel','Year Level','trim|required');
+            $this->form_validation->set_rules('editSection','Section','trim|required');
         
         	if($this->form_validation->run() == TRUE) {
-	            $code = $this->input->post('editCode');
-	            $desc = $this->input->post('editDesc');
-	            $ddesc = $this->input->post('editDeptDesc');
+	            $ccode = $this->input->post('editCode');
+	            $year = $this->input->post('editLevel');
+	            $sect = $this->input->post('editSection');
 
 	            //kinuha ung session ng dept id
 	            $course_id = $this->session->userdata('dataid');
-	            $this->section_model->update_course($course_id, $code, $desc, $ddesc);
+	            $this->section_model->update_course($course_id, $code, $year, $sect);
 	            echo $course_id. $code. $desc. $ddesc;
-	            redirect(base_url().'index.php/courses');
+	            redirect(base_url().'index.php/sections');
 	        }
 	        else {
-	        	redirect(base_url().'index.php/courses');
+	        	redirect(base_url().'index.php/sections');
 	        }
         }
     }
 
-    public function delete_course ($id = NULL) {
+    public function delete_section ($id = NULL) {
 
         $this->load->model('section_model');
-        $this->section_model->delete_course($id);
-        redirect(base_url().'index.php/courses');
+        $this->section_model->delete_section($id);
+        redirect(base_url().'index.php/sections');
         return;
     }
 
-    public function delete_all_course () {
+    public function delete_all_section () {
         $this->load->model('section_model');
-        $this->section_model->delete_all_course();
-        redirect(base_url().'index.php/courses');
+        $this->section_model->delete_all_section();
+        redirect(base_url().'index.php/sections');
         return;
     }
 
