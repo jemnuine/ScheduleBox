@@ -141,19 +141,7 @@
 					    </div>
 					</div>
 
-					<div class="sideb">
-						<div class="bread">
-							Create Schedule
-						</div>
-						<div class="well">
-
-					        <ul class="nav nav-list">
-					          <!--<li class="nav-header">Manage Schedule</li>-->
-					          <li><a href="#">Student Schedule</a></li>
-					          <li><a href="#">Instructor Schedule</a></li>
-					        </ul>
-					    </div>
-					</div>
+					
 				</div>
 			</div>
 		</div>

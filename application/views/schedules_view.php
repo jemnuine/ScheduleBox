@@ -1,4 +1,25 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+<!DOCTYPE html>
+<html>
+	<head>
+			<title>ScheduleBox</title>
+			<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>styles/metro.css">
+			<meta content="width=device-width, initial-scale=1.0" name="viewport">
+			<link href="<?php echo base_url();?>styles/bootstrap-responsive.css" rel="stylesheet">
+		    <link href="<?php echo base_url();?>styles/docs.css" rel="stylesheet">
+		    <link href="<?php echo base_url();?>styles/tribal-bootstrap.css" rel="stylesheet">
+		    <link href="<?php echo base_url();?>styles/tribal-timetable.css" rel="stylesheet">
+
+		    <script type="text/javascript" async="" src="<?php echo base_url();?>scripts/ga.js"></script>
+		    <script type="text/javascript" src="<?php echo base_url();?>scripts/jquery-latest.js"></script>
+		    <script type="text/javascript" src="<?php echo base_url();?>scripts/jquery.ba-resize.js"></script>
+		    <script type="text/javascript" src="<?php echo base_url();?>scripts/bootstrap-tooltip.js"></script>
+		    <script type="text/javascript" src="<?php echo base_url();?>scripts/bootstrap-collapse.js"></script>
+		    <script type="text/javascript" src="<?php echo base_url();?>scripts/tribal.js"></script>
+		    <script type="text/javascript" src="<?php echo base_url();?>scripts/tribal-shared.js"></script>
+		    <script type="text/javascript" src="<?php echo base_url();?>scripts/tribal-timetable.js"></script>
+	</head>
+	<body onload="clock();">
 		<!-- Navigation Bar -->
 		<div class="navbar">
 			<div class="navbar-inner">
@@ -36,7 +57,7 @@
 		<!-- Welcome -->
 		<div class="hero-unit">
 		
-			<h1>Courses</h1>
+			<h1>Manage Timetable Planner</h1>
 			<!--<h2 id="time"></h2>-->
 			
 			<p>ScheduleBox provides you a simple interface for quick location of the things that you need.</p>
@@ -83,6 +104,70 @@
 
 					</table>
 					<?php if(!isset($records)) echo '<div class="alert alert-info" align="center">No Records Yet!</div>'?>
+					
+					<div class="timetable" data-days="6" data-hours="15">
+			            <ul class="tt-events">
+			                <li class="tt-event btn-warning" data-id="10" data-day="0" data-start="0" data-duration="3.5" rel="tooltip" unselectable="on" data-original-title="">
+			                    AS Applied Maths (ASAMath 1)<br>
+			                    09:00 - 10:30<br>
+			                    C318 ACL Lecture</li>
+			                <li class="tt-event btn-warning" data-id="10" data-day="0" data-start="2" data-duration="3.5" rel="tooltip" unselectable="on" data-original-title="">
+			                    AS Applied Maths (ASAMath 1)<br>
+			                    09:00 - 10:30<br>
+			                    C318 ACL Lecture</li>
+			                
+			            
+			            </ul>
+			            <div class="tt-times">
+			                <div class="tt-time" data-time="0">
+			                    7:00<span class="hidden-phone">&nbsp;am</span></div>
+			                <div class="tt-time" data-time="1">
+			                    8:00<span class="hidden-phone">&nbsp;am</span></div>
+			                <div class="tt-time" data-time="2">
+			                    9:00<span class="hidden-phone">&nbsp;am</span></div>
+			                <div class="tt-time" data-time="3">
+			                    10:00<span class="hidden-phone">&nbsp;am</span></div>
+			                <div class="tt-time" data-time="4">
+			                    11:00<span class="hidden-phone">&nbsp;am</span></div>
+			                <div class="tt-time" data-time="5">
+			                    12:00<span class="hidden-phone">&nbsp;pm</span></div>
+			                <div class="tt-time" data-time="6">
+			                    1:00<span class="hidden-phone">&nbsp;pm</span></div>
+			                <div class="tt-time" data-time="6">
+			                    2:00<span class="hidden-phone">&nbsp;pm</span></div>
+			                <div class="tt-time" data-time="6">
+			                    3:00<span class="hidden-phone">&nbsp;pm</span></div>
+			                <div class="tt-time" data-time="6">
+			                    4:00<span class="hidden-phone">&nbsp;pm</span></div>
+			                <div class="tt-time" data-time="6">
+			                    5:00<span class="hidden-phone">&nbsp;pm</span></div>
+			                <div class="tt-time" data-time="6">
+			                    6:00<span class="hidden-phone">&nbsp;pm</span></div>
+			                <div class="tt-time" data-time="6">
+			                    7:00<span class="hidden-phone">&nbsp;pm</span></div>
+			                <div class="tt-time" data-time="6">
+			                    8:00<span class="hidden-phone">&nbsp;pm</span></div>
+			                <div class="tt-time" data-time="6">
+			                    9:00<span class="hidden-phone">&nbsp;pm</span></div>
+			                
+			            </div>
+			            <div class="tt-days">
+			                <div class="tt-day" data-day="0">
+			                    M<span class="hidden-phone">on</span></div>
+			                <div class="tt-day" data-day="1">
+			                    T<span class="hidden-phone">ue</span></div>
+			                <div class="tt-day" data-day="2">
+			                    W<span class="hidden-phone">ed</span></div>
+			                <div class="tt-day" data-day="3">
+			                    T<span class="hidden-phone">hu</span></div>
+			                <div class="tt-day" data-day="4">
+			                    F<span class="hidden-phone">ri</span></div>
+			                <div class="tt-day" data-day="4">
+			                    S<span class="hidden-phone">at</span></div>
+			                <div class="tt-day" data-day="4">
+			                    S<span class="hidden-phone">un</span></div>
+			            </div>
+			        </div>
 
 				</div>
 
@@ -95,7 +180,7 @@
 					        <ul class="nav nav-list">
 					          <li><a href="<?php echo base_url();?>index.php/semester">Semester</a></li>
 					          <li><a href="<?php echo base_url();?>index.php/departments">Departments</a></li>
-					          <li class="active"><a href="<?php echo base_url();?>index.php/courses">Courses</a></li>
+					          <li><a href="<?php echo base_url();?>index.php/courses">Courses</a></li>
 					          <li><a href="<?php echo base_url();?>index.php/sections">Sections</a></li>
 					     	  <li><a href="<?php echo base_url();?>index.php/subjects">Subjects</a></li>
 					     	  <li><a href="<?php echo base_url();?>index.php/rooms">Rooms</a></li>
@@ -109,7 +194,7 @@
 						</div>
 						<div class="well">
 					        <ul class="nav nav-list">
-					          <li><a class="btn btn-warning btn-block" href="<?php echo base_url();?>index.php/schedules">Manage Timetable</a></li>
+					          <li><button class="btn btn-warning btn-block" type="button">Manage Timetable</button></li>
 					        </ul>
 					    </div>
 					</div>
@@ -127,9 +212,9 @@
 				<h3 id="myModalLabel">Add New Course </h3>
 			</div>
 			<!-- Modal Header -->
-			<?php if(!is_null($add_course_error_msg)) echo $add_course_error_msg;?>  
+			<?php if(!is_null($add_schedule_error_msg)) echo $add_schedule_error_msg;?>  
 			<br/>
-			<form action='<?php echo base_url();?>index.php/courses/add_course' method='post' name='register'>
+			<form action='<?php echo base_url();?>index.php/courses/add_schedule' method='post' name='register'>
 				<!-- Modal Content -->
 				<table cellpadding="0" align=center>
 					<tr>
@@ -165,6 +250,8 @@
 					</tr>	
 				</table>
 
+				
+
 				<!-- Modal Footer -->
 				<div class="modal-footer">
 					<table cellpadding="0" align=center>
@@ -192,7 +279,7 @@
 				<h3 id="myModalLabel">Course </h3>
 			</div>
 			<!-- Modal Header -->
-			<?php if(!is_null($add_course_error_msg)) echo $add_course_error_msg;?>  
+			<?php if(!is_null($add_schedule_error_msg)) echo $add_schedule_error_msg;?>  
 			<br/>
 			<form action='<?php echo base_url();?>index.php/courses/list_edit_course' method='post' name='register'>
 				<!-- Modal Content -->
@@ -341,3 +428,4 @@
 			</div>
 		  </div>
 		</footer>
+

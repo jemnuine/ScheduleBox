@@ -98,11 +98,11 @@
 					</div>
 					<div class="sideb">
 						<div class="bread">
-							<i class="icon-calendar icon-white"></i> Create Schedule
+							<i class="icon-calendar icon-white"></i> Schedule Planner
 						</div>
 						<div class="well">
 					        <ul class="nav nav-list">
-					          <li><button class="btn btn-warning btn-block" type="button">Box It Your Way!</button></li>
+					          <li><a class="btn btn-warning btn-block" href="<?php echo base_url();?>index.php/schedules">Manage Timetable</a></li>
 					        </ul>
 					    </div>
 					</div>
@@ -305,3 +305,23 @@
 			<!-- Modal Footer -->	
 		</div>
 		<!-- Delete All -->
+
+		<footer>
+		  <div class="container">
+			<div class="row">
+			  <div class="span4">
+				<h2>Contact</h2>
+				<ul class="icons">
+				  <li><i class="icon-envelope"></i> Team Email: <a href="mailto:2010-SOEN-SR-0@groups.live.com">2010-SOFTENG-SR-0</a></li>
+				  <li><i class="icon-twitter"></i> Github: <a href="https://github.com/jemnuine" target="_blank">Repo</a></li>
+				</ul>
+			  </div>
+			  <div class="span8">
+				<h2>ScheduleBox</h2>
+				<p>
+				  Copyright &copy; 2013
+				</p>
+			  </div>
+			</div>
+		  </div>
+		</footer>
