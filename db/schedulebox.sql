@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 04, 2013 at 07:02 AM
+-- Generation Time: Apr 04, 2013 at 03:07 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -27,14 +27,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `all_subjects` (
+  `subject_id` int(11) NOT NULL AUTO_INCREMENT,
   `subject_code` varchar(15) NOT NULL,
   `subject_name` varchar(55) NOT NULL,
   `units` int(2) NOT NULL,
   `userid` int(11) NOT NULL,
-  PRIMARY KEY (`subject_code`),
+  PRIMARY KEY (`subject_id`),
   KEY `FK_subjects_subj_code` (`subject_code`),
   KEY `fk_all_subjects_users1_idx` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -189,17 +190,6 @@ CREATE TABLE IF NOT EXISTS `room` (
   PRIMARY KEY (`room_id`),
   KEY `fk_room_users1_idx` (`userid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
-
---
--- Dumping data for table `room`
---
-
-INSERT INTO `room` (`room_id`, `room_name`, `room_capacity`, `room_type`, `userid`) VALUES
-(1, 'B100', 30, 'Laboratory', 1),
-(2, 'A69', 50, 'Lecture', 1),
-(3, 'C101', 30, 'Lecture', 1),
-(4, 'D999', 1000, 'Laboratory', 1),
-(5, 'Recto Memorial', 1000, 'Auditorium', 1);
 
 -- --------------------------------------------------------
 
