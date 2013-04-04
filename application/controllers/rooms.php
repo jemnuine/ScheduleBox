@@ -176,7 +176,7 @@ class Rooms extends CI_Controller {
 
                 //kinuha ung session ng dept id
                 $room_id = $this->session->userdata('dataid');
-                $this->room_model->update_room($rname, $rtype, $rcap);
+                $this->room_model->update_room($room_id, $rname, $rtype, $rcap);
                 echo $rname.$rtype.$rcap; //for debugging purpose
                 redirect(base_url().'index.php/rooms');
             }

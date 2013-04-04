@@ -65,7 +65,7 @@ class Room_model extends CI_Model {
     }
 
 
-    public function update_room($id, $code, $year, $sect) {
+    public function update_room($id, $rname, $rtype, $rcap) {
 
         /*//check if may duplicate row
         $query = $this->db->query (
@@ -81,13 +81,13 @@ class Room_model extends CI_Model {
 
         if($id != '') {
             $data = array (
-                'course_code' => $code,
-                'year_level' => $year,
-                'section_number' => $sect
+                'room_name' => $rname,
+                'room_type' => $rtype,
+                'room_capacity' => $rcap
             );
 
-            $this->db->where('section_id',$id);
-            $this->db->update('section', $data);
+            $this->db->where('room_id',$id);
+            $this->db->update('room', $data);
 
         } else {
 
@@ -100,8 +100,8 @@ class Room_model extends CI_Model {
         
         if($id != '') {
 
-            $this->db->where('section_id',$id);
-            $this->db->delete('section');
+            $this->db->where('room_id',$id);
+            $this->db->delete('room');
 
 
             /*$query = $this->db->query('SELECT course_code FROM course WHERE userid='.$this->session->userdata('userid') . ' AND course_id=' . $id);
@@ -123,7 +123,7 @@ class Room_model extends CI_Model {
 
     public function delete_all_room() {
         $this->db->where('userid', $this->session->userdata('userid'));
-        $this->db->delete('section'); 
+        $this->db->delete('room'); 
     }
 
     /********** End course Functions **********/

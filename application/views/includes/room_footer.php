@@ -69,7 +69,7 @@
 			});
 
 			$("#triggerdelete").click(function() {
-		        window.location.href = "<?php echo base_url();?>index.php/sections/delete_section/" + deleteid;				    	
+		        window.location.href = "<?php echo base_url();?>index.php/rooms/delete_room/" + deleteid;				    	
 			});
 
 			$(".delall").click(function() {
@@ -78,7 +78,7 @@
 			});
 
 			$("#triggerdelall").click(function() {
-		        window.location.href = "<?php echo base_url();?>index.php/sections/delete_all_section";				    	
+		        window.location.href = "<?php echo base_url();?>index.php/rooms/delete_all_room";				    	
 			});
 			
 			<?php if(!is_null($add_room_error_action)) echo $add_room_error_action;?>
