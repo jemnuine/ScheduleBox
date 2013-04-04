@@ -112,7 +112,7 @@
 		</div>
 		<!-- Container Fluid -->
 
-		<!-- Add Semester Modal -->
+		<!-- Add Room Modal -->
 		<div id="modalAddRoom" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<!-- Modal Header -->
 			<div class="modal-header">
@@ -122,7 +122,7 @@
 			<!-- Modal Header -->
 			<?php if(!is_null($add_room_error_msg)) echo $add_room_error_msg;?>  
 			<br/>
-			<form action='<?php echo base_url();?>index.php/' method='post' name='register'>
+			<form action='<?php echo base_url();?>index.php/rooms/add_room' method='post' name='register'>
 				<!-- Modal Content -->
 				<table cellpadding="0" align=center>
 					<tr>
@@ -133,7 +133,14 @@
 					<tr>
 						<td>Room Type: </td>
 						<td>&nbsp;</td>
-						<td><input type='text' name='addType' id='addType' size='25' /></td>
+						<td>
+							<select name='addType' id='addType'>
+								<option>Lecture Room</option>
+								<option>Laboratory Room</option>
+								<option>Auditorium</option>
+								<option>Gymnasium</option>
+							</select>
+						</td>
 					</tr>
 					<tr>
 						<td>Room Capacity: </td>
@@ -160,4 +167,61 @@
 
 			</form>
 		</div>
-		<!-- Add Semester Modal -->
+		<!-- Add Room Modal -->
+
+		<!-- Edit Room Modal -->
+		<div id="modalEditRoom" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+				<h3 id="myModalLabel">Edit Room </h3>
+			</div>
+			<!-- Modal Header -->
+			<?php if(!is_null($add_room_error_msg)) echo $add_room_error_msg;?>  
+			<br/>
+			<form action='<?php echo base_url();?>index.php/rooms/list_edit_room' method='post' name='register'>
+				<!-- Modal Content -->
+				<table cellpadding="0" align=center>
+					<tr>
+						<td>Room Name: </td>
+						<td>&nbsp;</td>
+						<td><input type='text' name='editRoom' id='editRoom' size='25' /></td>
+					</tr>
+					<tr>
+						<td>Room Type: </td>
+						<td>&nbsp;</td>
+						<td>
+							<select name='editType' id='editType'>
+								<option>Lecture Room</option>
+								<option>Laboratory Room</option>
+								<option>Auditorium</option>
+								<option>Gymnasium</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Room Capacity: </td>
+						<td>&nbsp;</td>
+						<td><input type='text' name='editCapacity' id='editCapacity' size='25' /></td>
+					</tr>
+					
+				</table>
+
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<table cellpadding="0" align=center>
+						<tr>
+							<td></td>
+							<td width="400px" style="text-align:center">
+								<input type="submit" value="Save" class="btn btn-warning btn-large"/>
+								<a class="btn btn-primary btn-large" data-dismiss="modal" aria-hidden="true">Cancel</a>
+							</td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+				<!-- Modal Footer -->
+
+			</form>
+		</div>
+		<!-- Edit Room Modal -->

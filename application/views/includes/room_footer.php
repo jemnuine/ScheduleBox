@@ -52,9 +52,9 @@
 			        $('#modalEditRoom').modal('show');
 					var temp = new Array();
 					temp = response.split("*");
-			       	$('#editName').val(temp[0]);
-			       	$('#editCapacity').val(temp[1]);
-			       	$('#editType').val(temp[2]);
+			       	$('#editRoom').val(temp[0]);
+			       	$('#editCapacity').val(temp[2]);
+			       	$('#editType').val(temp[1]);
 			    });
 				    	
 			});

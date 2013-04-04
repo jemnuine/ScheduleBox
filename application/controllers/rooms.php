@@ -27,7 +27,7 @@ class Rooms extends CI_Controller {
 
 			$this->load->model('room_model');
 
-            if($query = $this->room_model->list_department()) {
+            if($query = $this->room_model->list_room()) {
                 $data['records'] = $query;
             }
 
@@ -44,28 +44,30 @@ class Rooms extends CI_Controller {
 		}
  	}
 
- 	public function add_department() {
+ 	public function add_room() {
 
-        $this->form_validation->set_rules('addCode','Department Code','trim|required');
-        $this->form_validation->set_rules('addDesc','Department Description','trim|required');
+        $this->form_validation->set_rules('addRoom','Room Name','trim|required');
+        $this->form_validation->set_rules('addType','Room Type','trim|required');
+        $this->form_validation->set_rules('addCapacity','Room Capacity','trim|required|numeric');
         
 
         if($this->form_validation->run() == TRUE) {
             $data = array (
-                'department_code' => $this->input->post('addCode'),
-                'department_desc' => $this->input->post('addDesc'),
+                'room_name' => $this->input->post('addRoom'),
+                'room_type' => $this->input->post('addType'),
+                'room_capacity' => $this->input->post('addCapacity'),
                 'userid' => $this->session->userdata('userid')   
             );
 
 
             $this->load->model('room_model');
 
-            $this->room_model->add_department($data);
+            $this->room_model->add_room($data);
 
             $this->session->unset_userdata('add_room_error_msg');
             $this->session->unset_userdata('add_room_error_action');
 
-            redirect(base_url() . 'index.php/departments', 'refresh');  
+            redirect(base_url() . 'index.php/rooms', 'refresh');  
             
             
         }
@@ -74,7 +76,7 @@ class Rooms extends CI_Controller {
         {
 
             $add_room_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>' . validation_errors() . '</div>';
-            $add_room_error_action = "$('#modalAddDepartment').modal('show');";
+            $add_room_error_action = "$('#modalAddRoom').modal('show');";
 
             $data = array (
                 'current_user' => $this->session->userdata('displayname'),
@@ -85,7 +87,7 @@ class Rooms extends CI_Controller {
 
             $this->load->model('room_model');
 
-            if($query = $this->room_model->list_department()) {
+            if($query = $this->room_model->list_room()) {
                 $data['records'] = $query;
             } else {
                 $data['records'] = $query;
@@ -93,7 +95,7 @@ class Rooms extends CI_Controller {
 
             if(!$data['records']) {
                 //$add_room_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>The record is existing!</div>';
-                $add_room_error_action = "$('#modalAddDepartment').modal('show');";
+                $add_room_error_action = "$('#modalAddRoom').modal('show');";
                 $data = array (
                     'current_user' => $this->session->userdata('displayname'),
                     'current_username' => $this->session->userdata('username'),
@@ -106,17 +108,17 @@ class Rooms extends CI_Controller {
              
             $this->load->view('includes/nocache');
             $this->load->view('includes/header2');
-            $this->load->view('departments_view', $data);
-            $this->load->view('includes/department_footer', $data);
+            $this->load->view('rooms_view', $data);
+            $this->load->view('includes/room_footer', $data);
 
             
         }
         
     }
 
-    public function list_edit_department (
+    public function list_edit_room (
             $add_room_error_msg = NULL, 
-            $add_room_error_action = "$('#modalEditDepartment').modal('show');", 
+            $add_room_error_action = "$('#modalEditRoom').modal('show');", 
             $reg_error_msg = NULL
 
         ) {
@@ -128,69 +130,76 @@ class Rooms extends CI_Controller {
 
         $this->load->model('room_model');
         //kinuha lang ung department id galing sa view
-        $department_id = $this->input->post('dataid');
+        $room_id = $this->input->post('dataid');
 
         //check kung ajax request
         if($this->input->post('ajax')) {
 
             //ni-recycle ko lng ung sa addsem na modal trigger
-            $add_room_error_action = "$('#modalEditDepartment').modal('show');"; 
+            $add_room_error_action = "$('#modalEditRoom').modal('show');"; 
 
-            $query = $this->room_model->get_dept_code($department_id);
-            $query2 = $this->room_model->get_dept_desc($department_id);
+            $query = $this->room_model->get_room_name($room_id);
+            $query2 = $this->room_model->get_room_type($room_id);
+            $query3 = $this->room_model->get_room_capacity($room_id);
 
             $data = array (
                 'current_user' => $this->session->userdata('displayname'),
                 'current_username' => $this->session->userdata('username'),
                 'add_room_error_msg' => $add_room_error_msg,
                 'add_room_error_action' => $add_room_error_action,
-                'dataid' => $department_id,
-                'dcode' => $query,
-                'ddesc' => $query2
+                'dataid' => $room_id,
+                'rname' => $query,
+                'rtype' => $query2,
+                'rcap' => $query3
                 
             );
 
             $this->session->set_userdata($data); //the trick!! mawawala na ung ajax request next time eh
             
-            echo implode('', $data['dcode']);
+            echo implode('', $data['rname']);
             echo '*';
-            echo implode('', $data['ddesc']);
+            echo implode('', $data['rtype']);
+            echo '*';
+            echo implode('', $data['rcap']);
+
         } else {
 
-            $this->form_validation->set_rules('editCode','Department Code','trim|required');
-            $this->form_validation->set_rules('editDesc','Department Description','trim|required');
+            $this->form_validation->set_rules('editRoom','Room Name','trim|required');
+	        $this->form_validation->set_rules('editType','Room Type','trim|required');
+	        $this->form_validation->set_rules('editCapacity','Room Capacity','trim|required|numeric');
             
             if($this->form_validation->run() == TRUE) {
 
-                $code = $this->input->post('editCode');
-                $desc = $this->input->post('editDesc');
+                $rname = $this->input->post('editRoom');
+                $rtype = $this->input->post('editType');
+                $rcap = $this->input->post('editCapacity');
 
                 //kinuha ung session ng dept id
-                $department_id = $this->session->userdata('dataid');
-                $this->room_model->update_department($department_id, $code, $desc);
-                echo $department_id.$code.$desc; //for debugging purpose
-                redirect(base_url().'index.php/departments');
+                $room_id = $this->session->userdata('dataid');
+                $this->room_model->update_room($rname, $rtype, $rcap);
+                echo $rname.$rtype.$rcap; //for debugging purpose
+                redirect(base_url().'index.php/rooms');
             }
             else {
-                redirect(base_url().'index.php/departments');
+                redirect(base_url().'index.php/rooms');
             }
         }
 
     }
 
-    public function delete_department ($id = NULL) {
+    public function delete_room ($id = NULL) {
 
         $this->load->model('room_model');
-        $this->room_model->delete_department($id);
-        redirect(base_url().'index.php/departments');
+        $this->room_model->delete_room($id);
+        redirect(base_url().'index.php/rooms');
         return;
     }
 
-    public function delete_all_department () {
+    public function delete_all_room () {
 
         $this->load->model('room_model');
-        $this->room_model->delete_all_department();
-        redirect(base_url().'index.php/departments');
+        $this->room_model->delete_all_room();
+        redirect(base_url().'index.php/rooms');
         return;
     }
 

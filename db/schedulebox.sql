@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 03, 2013 at 03:23 AM
+-- Generation Time: Apr 04, 2013 at 07:02 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -73,15 +73,15 @@ CREATE TABLE IF NOT EXISTS `course` (
   `course_code` varchar(10) NOT NULL,
   PRIMARY KEY (`course_id`),
   KEY `fk_course_users1_idx` (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `course`
 --
 
 INSERT INTO `course` (`course_id`, `course_desc`, `department_desc`, `userid`, `course_code`) VALUES
-(6, 'Industrial Engineering', 'College of Engineering', 1, 'BSIE'),
-(7, 'Computer Engineering', 'College of Engineering', 1, 'BSCoEn');
+(10, 'Education Major in Math', 'College of Education', 1, 'BSE MT'),
+(11, 'Industrial Engineering', 'College of Engineering', 1, 'BSIE');
 
 -- --------------------------------------------------------
 
@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `department` (
   `department_desc` varchar(255) NOT NULL,
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`department_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `department`
@@ -156,8 +156,8 @@ CREATE TABLE IF NOT EXISTS `department` (
 INSERT INTO `department` (`department_id`, `department_code`, `department_desc`, `userid`) VALUES
 (6, 'BSIEE', 'Industrial Engineering', 18),
 (7, 'COE', 'College of Engot', 18),
-(22, 'CoEng', 'College of Engineering', 1),
-(24, 'CoE', 'College of Education', 1);
+(26, 'CoEd', 'College of Education', 1),
+(28, 'CoE', 'College of Engineering', 1);
 
 -- --------------------------------------------------------
 
@@ -188,7 +188,18 @@ CREATE TABLE IF NOT EXISTS `room` (
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`room_id`),
   KEY `fk_room_users1_idx` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`room_id`, `room_name`, `room_capacity`, `room_type`, `userid`) VALUES
+(1, 'B100', 30, 'Laboratory', 1),
+(2, 'A69', 50, 'Lecture', 1),
+(3, 'C101', 30, 'Lecture', 1),
+(4, 'D999', 1000, 'Laboratory', 1),
+(5, 'Recto Memorial', 1000, 'Auditorium', 1);
 
 -- --------------------------------------------------------
 
@@ -226,7 +237,15 @@ CREATE TABLE IF NOT EXISTS `section` (
   `section_id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`section_id`),
   KEY `fk_section_users1_idx` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `section`
+--
+
+INSERT INTO `section` (`section_number`, `year_level`, `course_code`, `userid`, `section_id`) VALUES
+(2, 3, 'BSIE', 1, 11),
+(4, 1, 'BSE MT', 1, 12);
 
 -- --------------------------------------------------------
 
