@@ -87,12 +87,15 @@
 								<li class="<?php
 									echo 'tt-event ';
 
-									$rand = rand(1,5);
+									$rand += 1;
 									if($rand == 1) echo 'btn-primary';
 									if($rand == 2) echo 'btn-info';
 									if($rand == 3) echo 'btn-success';
 									if($rand == 4) echo 'btn-warning';
-									if($rand == 5) echo 'btn-danger';
+									if($rand == 5) {
+										echo 'btn-danger';
+											$rand = 0;
+										}
 
 								?>"
 

@@ -61,6 +61,10 @@ class Schedules extends CI_Controller {
             if($query = $this->timetable_model->list_instructor()) {
                 $data['instructor_record'] = $query;
             }
+
+            //color alternate 
+            $color = rand(0,4);
+            $data['rand'] = $color;
             /*if($query = $this->timetable_model->list_section_course()) {
                 $data['record'] = $query;
             }*/
