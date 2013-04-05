@@ -75,7 +75,7 @@
 		<!-- Welcome -->
 		<div class="hero-unit">
 		
-			<h1>Dashboard</h1>
+			<h1>Welcome <?php echo $current_user; ?>!</h1>
 			<!--<h2 id="time"></h2>-->
 			<p>ScheduleBox provides you a simple interface for quick location of the things that you need.</p>
 			
@@ -85,41 +85,8 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span9">
-					<h3>Welcome <?php echo $current_user; ?>!</h3>
-					<table class="table">
-						<thead>
-							<td>
-								sadfasdfasdfasdf
-
-							</td>
-							<td>
-								sadfasdfasdfasdf
-							</td>
-							<td>
-								sadfasdfasdfasdf
-							</td>
-							<td>
-								sadfasdfasdfasdf
-							</td>		
-						</thead>
-						<tr>
-
-							<td>
-								sadfasdfasdfasdf
-
-							</td>
-							<td>
-								sadfasdfasdfasdf
-							</td>
-							<td>
-								sadfasdfasdfasdf
-							</td>
-							<td>
-								sadfasdfasdfasdf
-							</td>
-						</tr>
-
-					</table>
+					<h3>Dashboard</h3>
+					
 				</div>
 
 				<div class="span3">
@@ -137,6 +104,16 @@
 					     	  <li><a href="<?php echo base_url();?>index.php/subjects">Subjects</a></li>
 					     	  <li><a href="<?php echo base_url();?>index.php/rooms">Rooms</a></li>
 					     	  <li><a href="<?php echo base_url();?>index.php/instructors">Instructors</a></li>
+					        </ul>
+					    </div>
+					</div>
+					<div class="sideb">
+						<div class="bread">
+							<i class="icon-calendar icon-white"></i> Schedule Planner
+						</div>
+						<div class="well">
+					        <ul class="nav nav-list">
+					          <li><a class="btn btn-warning btn-block">Manage Timetable</a></li>
 					        </ul>
 					    </div>
 					</div>
