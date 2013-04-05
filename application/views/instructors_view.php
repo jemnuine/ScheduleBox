@@ -271,7 +271,7 @@
 				<h2>Contact</h2>
 				<ul class="icons">
 				  <li><i class="icon-envelope"></i> Team Email: <a href="mailto:2010-SOEN-SR-0@groups.live.com">2010-SOFTENG-SR-0</a></li>
-				  <li><i class="icon-twitter"></i> Github: <a href="https://github.com/jemnuine" target="_blank">Repo</a></li>
+				  <li><i class="icon-github"></i> Github: <a href="https://github.com/jemnuine" target="_blank">Repo</a></li>
 				</ul>
 			  </div>
 			  <div class="span8">
