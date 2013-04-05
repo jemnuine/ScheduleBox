@@ -148,7 +148,7 @@
 			                    Prof. <?php echo $row->instructor_name;?><br>
 			                    <?php echo $row->course_code;?> <?php echo $row->year_level;?>-<?php echo $row->section_number;?><br>
 			                    <?php echo $row->room_name;?> <?php echo $row->start_time;?> - <?php echo $row->end_time;?><br>
-			                    C318 ACL Lecture</li></a>
+			                    </li></a>
 
 								<?php endforeach;?>
 							<?php endif; ?>
