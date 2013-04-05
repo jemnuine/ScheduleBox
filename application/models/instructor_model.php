@@ -13,7 +13,7 @@ class Instructor_model extends CI_Model {
         //check if may duplicate row
         $query = $this->db->query (
             'SELECT * FROM instructor WHERE userid=' . $this->session->userdata('userid') .
-            ' AND instructor_name="' . $data['instructor_name'] 
+            ' AND instructor_name="' . $data['instructor_name'] .'"'
             );
 
         $records = $query->result();

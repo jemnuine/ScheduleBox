@@ -115,20 +115,15 @@
 				<h3 id="myModalLabel">Add New Instructor </h3>
 			</div>
 			<!-- Modal Header -->
-			<?php if(!is_null($add_inst_error_msg)) echo $add_inst_error_msg;?>  
+			<?php if(!is_null($add_instructor_error_msg)) echo $add_instructor_error_msg;?>  
 			<br/>
-			<form action='<?php echo base_url();?>index.php/' method='post' name='register'>
+			<form action='<?php echo base_url();?>index.php/instructors/add_instructor' method='post' name='register'>
 				<!-- Modal Content -->
 				<table cellpadding="0" align=center>
 					<tr>
-						<td>Prefix: </td>
-						<td>&nbsp;</td>
-						<td><input type='text' name='add_prefix' id='add_prefix' size='25' /></td>
-					</tr>
-					<tr>
 						<td>Instructor Name: </td>
 						<td>&nbsp;</td>
-						<td><input type='text' name='add_inst_name' id='add_inst_name' size='25' /></td>
+						<td><input type='text' name='addInstructor' id='addInstructor' size='25' /></td>
 					</tr>	
 				</table>
 
@@ -152,34 +147,23 @@
 		<!-- Add Semester Modal -->
 
 		<!-- Edit Section Modal -->
-		<div id="modalEditSubject" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div id="modalEditInstructor" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<!-- Modal Header -->
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
-				<h3 id="myModalLabel">Edit Subject </h3>
+				<h3 id="myModalLabel">Edit Instructor </h3>
 			</div>
 			<!-- Modal Header -->
-			<?php if(!is_null($add_subject_error_msg)) echo $add_subject_error_msg;?>  
+			<?php if(!is_null($add_instructor_error_msg)) echo $add_instructor_error_msg;?>  
 			<br/>
-			<form action='<?php echo base_url();?>index.php/subjects/list_edit_subject' method='post' name='register'>
+			<form action='<?php echo base_url();?>index.php/instructors/list_edit_instructor' method='post' name='register'>
 				<!-- Modal Content -->
 				<table cellpadding="0" align=center>
 					<tr>
-						<td>Subject Code: </td>
+						<td>Instructor Name: </td>
 						<td>&nbsp;</td>
-						<td><input type='text' name='editCode' id='editCode' size='25' /></td>
+						<td><input type='text' name='editInstructor' id='editInstructor' size='25' /></td>
 					</tr>
-					<tr>
-						<td>Subject Name: </td>
-						<td>&nbsp;</td>
-						<td><input type='text' name='editSubject' id='editSubject' size='25' /></td>
-					</tr>
-					<tr>
-						<td>Number of Units: </td>
-						<td>&nbsp;</td>
-						<td><input type='text' name='editUnits' id='editUnits' size='25' /></td>
-					</tr>
-
 				</table>
 
 				<!-- Modal Footer -->

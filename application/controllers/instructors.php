@@ -49,7 +49,7 @@ class Instructors extends CI_Controller {
 
  	public function add_instructor() {
 
-        $this->form_validation->set_rules('addInstructor','Instructor Name','trim|required');
+        $this->form_validation->set_rules('addInstructor','Instructor Name','trim|required|alpha');
 
         if($this->form_validation->run() == TRUE) {
             $data = array (
@@ -115,7 +115,7 @@ class Instructors extends CI_Controller {
         }
     }
 
-    public function list_edit_subject (
+    public function list_edit_instructor (
             $add_instructor_error_msg = NULL, 
             $add_instructor_error_action = NULL, 
             $reg_error_msg = NULL
@@ -138,14 +138,14 @@ class Instructors extends CI_Controller {
             //ni-recycle ko lng ung sa addsem na modal trigger
             $add_instructor_error_action = "$('#modalEditInstructor').modal('show');"; 
 
-            $query = $this->instructor_model->get_instructor_name($subject_id);
+            $query = $this->instructor_model->get_instructor_name($instructor_id);
 
             $data = array (
                 'current_user' => $this->session->userdata('displayname'),
                 'current_username' => $this->session->userdata('username'),
                 'add_instructor_error_msg' => $add_instructor_error_msg,
                 'add_instructor_error_action' => $add_instructor_error_action,
-                'dataid' => $subject_id,
+                'dataid' => $instructor_id,
                 'iname' => $query
                 
             );
@@ -157,14 +157,16 @@ class Instructors extends CI_Controller {
 
         } else {
 
-        	$this->form_validation->set_rules('addInstructor','Instructor Name','trim|required');
+        	$this->form_validation->set_rules('editInstructor','Instructor Name','trim|required|alpha');
 	        
 
 	        if($this->form_validation->run() == TRUE) {
-	            $iname = $this->input->post('editCode');
+	            $iname = $this->input->post('editInstructor');
+
+                echo $iname;
 
 	            //kinuha ung session ng dept id
-	            $subject_id = $this->session->userdata('dataid');
+	            $instructor_id = $this->session->userdata('dataid');
 	            $this->instructor_model->update_instructor($instructor_id, $iname);
 	            redirect(base_url().'index.php/instructors');
 	        } else {
