@@ -45,17 +45,18 @@ class Instructor_model extends CI_Model {
 
     public function update_instructor($id, $iname) {
 
-        /*//check if may duplicate row
+        //check if may duplicate row
         $query = $this->db->query (
-            'SELECT * FROM section WHERE userid=' . $this->session->userdata('userid') .
-            ' AND course_code="' . $scode . '" AND year_level=' . $sname . 'AND section_number=' . $units
+            'SELECT * FROM instructor WHERE userid=' . $this->session->userdata('userid') .
+            ' AND instructor_name="' . $iname . '"'
             );
+        
         $records = $query->result();
 
         //if may record
         if($records) {
             return false;   
-        }*/
+        }
 
         if($id != '') {
             $data = array (

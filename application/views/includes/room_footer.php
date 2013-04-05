@@ -48,7 +48,6 @@
 		        });
 
 		        request.done(function (response, textStatus, jqXHR){
-		        	alert(response);
 			        $('#modalEditRoom').modal('show');
 					var temp = new Array();
 					temp = response.split("*");

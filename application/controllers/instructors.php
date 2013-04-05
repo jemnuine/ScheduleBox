@@ -167,8 +167,14 @@ class Instructors extends CI_Controller {
 
 	            //kinuha ung session ng dept id
 	            $instructor_id = $this->session->userdata('dataid');
-	            $this->instructor_model->update_instructor($instructor_id, $iname);
-	            redirect(base_url().'index.php/instructors');
+	            if($this->instructor_model->update_instructor($instructor_id, $iname)) {
+
+                    redirect(base_url().'index.php/instructors');
+                }
+                else {
+                    redirect(base_url().'index.php/instructors');
+                }
+	            
 	        } else {
 
 	        	redirect(base_url().'index.php/instructors');
