@@ -5279,7 +5279,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .modal.fade.in {
-  top: 20%; /*10%*/
+  top: 10%; /*10%*/
 }
 
 .modal-header {

@@ -30,6 +30,37 @@ class Schedules extends CI_Controller {
                 $data['records'] = $query;
             }
 
+            if($query = $this->timetable_model->list_subject()) {
+                $data['subject_record'] = $query;
+            }
+
+            if($query = $this->timetable_model->list_year()) {
+                $data['curriculum_record'] = $query;
+            }
+
+            if($query = $this->timetable_model->list_semester()) {
+                $data['semester_record'] = $query;
+            }
+
+            if($query = $this->timetable_model->list_course()) {
+                $data['course_record'] = $query;
+            }
+
+            if($query = $this->timetable_model->list_level()) {
+                $data['level_record'] = $query;
+            }
+
+            if($query = $this->timetable_model->list_section()) {
+                $data['section_record'] = $query;
+            }
+
+            if($query = $this->timetable_model->list_room()) {
+                $data['room_record'] = $query;
+            }
+
+            if($query = $this->timetable_model->list_instructor()) {
+                $data['instructor_record'] = $query;
+            }
             /*if($query = $this->timetable_model->list_section_course()) {
                 $data['record'] = $query;
             }*/
@@ -50,79 +81,42 @@ class Schedules extends CI_Controller {
 
  	public function add_schedule() {
 
-        $this->form_validation->set_rules('addCourse','Course Code','trim|required');
-        $this->form_validation->set_rules('addLevel','Year Level','trim|required');
-        $this->form_validation->set_rules('addSection','Section','trim|required');
         
+        $data = array (
+            'curriculum_year' => $this->input->post('addYear'),
+            'semester' => $this->input->post('addSemester'),
+            'course_code' => $this->input->post('addCourse'),
+            'year_level' => $this->input->post('addLevel'),
+            'section_number' => $this->input->post('addSection'),
+            'day' => $this->input->post('addDay'),
+            'room_name' => $this->input->post('addRoom'),
+            'subject_name' => $this->input->post('addSubject'),
+            'instructor_name' => $this->input->post('addInstructor'),
+            'start_time' => $this->input->post('addStart'),
+            'end_time' => $this->input->post('addEnd'),
+            'userid' => $this->session->userdata('userid')   
+        );
 
-        if($this->form_validation->run() == TRUE) {
-            $data = array (
-                'course_code' => $this->input->post('addCourse'),
-                'year_level' => $this->input->post('addLevel'),
-                'section_number' => $this->input->post('addSection'),
-                'userid' => $this->session->userdata('userid')   
-            );
+        $start = strtotime($this->input->post('addStart'));
+        $end = strtotime($this->input->post('addEnd'));
 
-
-            $this->load->model('timetable_model');
-            $this->timetable_model->add_schedule($data);
-
-            $data = array (
-                'current_user' => $this->session->userdata('displayname'),
-                'current_username' => $this->session->userdata('username'),
-            	'add_schedule_error_msg' => NULL,
-            	'add_schedule_error_action' => NULL //wala lang xD
-            );
-
-            redirect(base_url() . 'index.php/sections', 'refresh');   
-            
+        if($start >= $end) {
+            redirect(base_url() . 'index.php/schedules', 'refresh');
         }
-        else
-        {
 
-            $add_schedule_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>' . validation_errors() . '</div>';
-            $add_schedule_error_action = "$('#modalAddSection').modal('show');";
+        $this->load->model('timetable_model');
+        $this->timetable_model->add_schedule($data);
 
-            $data = array (
-                'current_user' => $this->session->userdata('displayname'),
-                'current_username' => $this->session->userdata('username'),
-                'add_schedule_error_msg' => $add_schedule_error_msg,
-                'add_schedule_error_action' => $add_schedule_error_action
-            );
+        $data = array (
+            'current_user' => $this->session->userdata('displayname'),
+            'current_username' => $this->session->userdata('username'),
+        	'add_schedule_error_msg' => NULL,
+        	'add_schedule_error_action' => NULL //wala lang xD
+        );
 
-            $this->load->model('timetable_model');
-
-            if($query = $this->timetable_model->list_section()) {
-                $data['records'] = $query;
-            } else {
-            	$data['records'] = $query;
-            }
-
-            if(!$data['records']) {
-                //$add_schedule_error_msg = '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>The record is existing!</div>';
-                $add_schedule_error_action = "$('#modalAddSection').modal('show');";
-                $data = array (
-                    'current_user' => $this->session->userdata('displayname'),
-                    'current_username' => $this->session->userdata('username'),
-                    'add_schedule_error_msg' => $add_schedule_error_msg,
-                    'add_schedule_error_action' => $add_schedule_error_action
-                );
-
-            }
+        redirect(base_url() . 'index.php/schedules', 'refresh');   
             
-	        if($query = $this->timetable_model->list_section_course()) {
-                $data['record'] = $query;
-            }
-
-            $this->session->set_userdata($data);
-
-			$this->load->view('includes/nocache');
-			$this->load->view('includes/header2');
-    		$this->load->view('schedules_view', $data);
-    		$this->load->view('includes/schedule_footer', $data);
-
-            
-        }
+        
     }
 
     public function list_edit_section (

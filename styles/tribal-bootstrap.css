@@ -1,6 +1,6 @@
 ﻿body
 {
-	padding-top: 50px;
+	padding-top: 0px;
 }
 @media (max-width: 980px) {
 
@@ -55,8 +55,7 @@ h2
 }
 h3
 {
-	font-size: 14px;
-	font-weight:normal;
+	
 }
 .tab-pane .row
 {

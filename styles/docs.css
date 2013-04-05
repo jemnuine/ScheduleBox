@@ -9,12 +9,12 @@
 /* Body and structure
 -------------------------------------------------- */
 body {
-  position: relative;
+  /*position: relative;
   padding-top: 90px;
-/*  background-color: #fff;
-  background-image: url(../img/grid-18px-masked.png);*/
+ background-color: #fff;
+  background-image: url(../img/grid-18px-masked.png);
   background-repeat: repeat-x;
-  background-position: 0 40px;
+  background-position: 0 40px;*/
 }
 
 

@@ -49,7 +49,7 @@ class Instructors extends CI_Controller {
 
  	public function add_instructor() {
 
-        $this->form_validation->set_rules('addInstructor','Instructor Name','trim|required|alpha');
+        $this->form_validation->set_rules('addInstructor','Instructor Name','trim|required');
 
         if($this->form_validation->run() == TRUE) {
             $data = array (
@@ -157,7 +157,7 @@ class Instructors extends CI_Controller {
 
         } else {
 
-        	$this->form_validation->set_rules('editInstructor','Instructor Name','trim|required|alpha');
+        	$this->form_validation->set_rules('editInstructor','Instructor Name','trim|required');
 	        
 
 	        if($this->form_validation->run() == TRUE) {

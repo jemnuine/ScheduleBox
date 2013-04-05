@@ -22,7 +22,7 @@
 
 		<script>
 			$("#addbutton").click(function() {
-				$('#modalAddSection').modal('show');
+				$('#modalAddSchedule').modal('show');
 				
 				
 		
@@ -45,13 +45,13 @@
 		        };
 
 		        var request = $.ajax({
-		        	url: "<?php echo base_url();?>index.php/sections/list_edit_section",
+		        	url: "<?php echo base_url();?>index.php/schedules/list_edit_schedules",
 		        	type: 'POST',
 		        	data: form_data
 		        });
 
 		        request.done(function (response, textStatus, jqXHR){
-			        $('#modalEditSection').modal('show');
+			        $('#modalEditSchedule').modal('show');
 					var temp = new Array();
 					temp = response.split("*");
 			       	$('#editCode').val(temp[0]);

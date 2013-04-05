@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 05, 2013 at 02:55 AM
+-- Generation Time: Apr 05, 2013 at 03:36 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -35,14 +35,21 @@ CREATE TABLE IF NOT EXISTS `all_subjects` (
   PRIMARY KEY (`subject_id`),
   KEY `FK_subjects_subj_code` (`subject_code`),
   KEY `fk_all_subjects_users1_idx` (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `all_subjects`
 --
 
 INSERT INTO `all_subjects` (`subject_id`, `subject_code`, `subject_name`, `units`, `userid`) VALUES
-(4, 'INTE3013', 'System Analysis and Design', 5, 1);
+(4, 'INTE3013', 'System Analysis and Design', 5, 1),
+(5, 'MATH1030', 'College Algebra', 3, 1),
+(6, 'MATH3023', 'Physics', 3, 1),
+(7, 'FIL1013', 'Pag-uulit', 3, 1),
+(8, 'HUMA1010', 'Humanities', 3, 1),
+(9, 'PE69', 'Physical Education', 3, 1),
+(10, 'POLSCI131', 'Political Science', 3, 1),
+(11, 'Elective 1', 'Android Programming', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -81,14 +88,19 @@ CREATE TABLE IF NOT EXISTS `course` (
   `course_code` varchar(10) NOT NULL,
   PRIMARY KEY (`course_id`),
   KEY `fk_course_users1_idx` (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `course`
 --
 
 INSERT INTO `course` (`course_id`, `course_desc`, `department_desc`, `userid`, `course_code`) VALUES
-(10, 'Education Major in Math', 'College of Education', 1, 'BSE MT');
+(10, 'Education Major in Math', 'College of Education', 1, 'BSE MT'),
+(12, 'Education Major in English', 'College of Education', 1, 'BSE ENG'),
+(13, 'Industrial Engineering', 'College of Engineering', 1, 'BSIE'),
+(14, 'Computer Engineering', 'College of Engineering', 1, 'CoE'),
+(15, 'Accountancy', 'College of Accountancy and Finance', 1, 'BSA'),
+(16, 'Bachelor of Laws', 'College of Law', 1, 'BL');
 
 -- --------------------------------------------------------
 
@@ -118,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `curriculum` (
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`curriculum_id`),
   KEY `fk_curriculum_users1_idx` (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Dumping data for table `curriculum`
@@ -126,8 +138,8 @@ CREATE TABLE IF NOT EXISTS `curriculum` (
 
 INSERT INTO `curriculum` (`curriculum_id`, `semester`, `curriculum_year`, `userid`) VALUES
 (24, 'First', 2012, 12),
-(35, 'First', 2011, 1),
-(36, 'First', 2012, 1);
+(36, 'First', 2012, 1),
+(39, 'Second', 2013, 1);
 
 -- --------------------------------------------------------
 
@@ -154,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `department` (
   `department_desc` varchar(255) NOT NULL,
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`department_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `department`
@@ -163,7 +175,15 @@ CREATE TABLE IF NOT EXISTS `department` (
 INSERT INTO `department` (`department_id`, `department_code`, `department_desc`, `userid`) VALUES
 (6, 'BSIEE', 'Industrial Engineering', 18),
 (7, 'COE', 'College of Engot', 18),
-(26, 'CoEd', 'College of Education', 1);
+(26, 'CoEd', 'College of Education', 1),
+(29, 'CoE', 'College of Engineering', 1),
+(30, 'CoMed', 'College of Medicine', 1),
+(31, 'CoCS', 'College of Computer Studies', 1),
+(32, 'CAF', 'College of Accountancy and Finance', 1),
+(33, 'CoC', 'College of Communication', 1),
+(34, 'CS', 'College of Science', 1),
+(35, 'CL', 'College of Law', 1),
+(36, 'CoT', 'College of Tourism', 1);
 
 -- --------------------------------------------------------
 
@@ -178,15 +198,19 @@ CREATE TABLE IF NOT EXISTS `instructor` (
   PRIMARY KEY (`instructor_id`),
   UNIQUE KEY `instructor_name` (`instructor_name`),
   KEY `fk_instructor_users1_idx` (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `instructor`
 --
 
 INSERT INTO `instructor` (`instructor_id`, `instructor_name`, `userid`) VALUES
-(1, 'Jodi', 1),
-(2, 'Ruben', 1);
+(3, 'Rodriguez', 1),
+(4, 'Rachelle Anne Carongoy', 1),
+(5, 'John Paul Marabe', 1),
+(6, 'Ruben Raymundo', 1),
+(7, 'Roenz Gaynilo', 1),
+(8, 'Bonifacio Buenafe', 1);
 
 -- --------------------------------------------------------
 
@@ -202,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `room` (
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`room_id`),
   KEY `fk_room_users1_idx` (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `room`
@@ -210,7 +234,11 @@ CREATE TABLE IF NOT EXISTS `room` (
 
 INSERT INTO `room` (`room_id`, `room_name`, `room_capacity`, `room_type`, `userid`) VALUES
 (6, 'A69', 50, 'Laboratory Room', 1),
-(7, 'B3', 45, 'Laboratory Room', 1);
+(7, 'B3', 45, 'Laboratory Room', 1),
+(8, 'B1', 50, 'Lecture Room', 1),
+(9, 'C4', 40, 'Lecture Room', 1),
+(10, 'C5', 40, 'Lecture Room', 1),
+(11, 'C6', 40, 'Lecture Room', 1);
 
 -- --------------------------------------------------------
 
@@ -224,15 +252,26 @@ CREATE TABLE IF NOT EXISTS `schedules` (
   `day` varchar(10) DEFAULT NULL,
   `start_time` time DEFAULT NULL,
   `end_time` time DEFAULT NULL,
-  `section_name` varchar(45) DEFAULT NULL,
+  `section_number` int(11) DEFAULT NULL,
   `subject_name` varchar(55) DEFAULT NULL,
   `room_name` varchar(45) DEFAULT NULL,
   `semester` varchar(10) DEFAULT NULL,
   `curriculum_year` int(4) DEFAULT NULL,
   `userid` int(11) NOT NULL,
+  `year_level` int(11) NOT NULL,
+  `course_code` varchar(255) NOT NULL,
   PRIMARY KEY (`schedule_id`),
   KEY `fk_schedules_users1_idx` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+
+--
+-- Dumping data for table `schedules`
+--
+
+INSERT INTO `schedules` (`schedule_id`, `instructor_name`, `day`, `start_time`, `end_time`, `section_number`, `subject_name`, `room_name`, `semester`, `curriculum_year`, `userid`, `year_level`, `course_code`) VALUES
+(16, 'Jodi', 'Mon', '07:00:00', '10:30:00', 2, 'INTE3013', 'A69', 'First', 2012, 1, 3, 'BSE MT'),
+(17, 'Bonifacio Buenafe', 'Wed', '10:00:00', '13:30:00', 2, 'POLSCI131', 'B1', 'First', 2013, 1, 3, 'CoE'),
+(18, 'Rachelle Anne Carongoy', 'Wed', '10:00:00', '13:00:00', 4, 'HUMA1010', 'C5', 'Second', 2013, 1, 1, 'BSA');
 
 -- --------------------------------------------------------
 
@@ -248,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `section` (
   `section_id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`section_id`),
   KEY `fk_section_users1_idx` (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `section`
@@ -256,7 +295,12 @@ CREATE TABLE IF NOT EXISTS `section` (
 
 INSERT INTO `section` (`section_number`, `year_level`, `course_code`, `userid`, `section_id`) VALUES
 (2, 3, 'BSIE', 1, 11),
-(4, 1, 'BSE MT', 1, 12);
+(4, 1, 'BSE MT', 1, 12),
+(1, 1, 'CoE', 1, 13),
+(2, 2, 'BSA', 1, 14),
+(5, 5, 'BSIE', 1, 15),
+(4, 1, 'BSA', 1, 16),
+(1, 3, 'BSE ENG', 1, 17);
 
 -- --------------------------------------------------------
 

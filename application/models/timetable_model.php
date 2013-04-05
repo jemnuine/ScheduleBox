@@ -8,10 +8,10 @@ class Timetable_model extends CI_Model {
 
      /********** Begin Section Functions **********/
 
-    public function add_section($data) {
+    public function add_schedule($data) {
         
         //check if may duplicate row
-        $query = $this->db->query (
+        /*$query = $this->db->query (
             'SELECT * FROM section WHERE userid=' . $this->session->userdata('userid') .
             ' AND course_code="' . $data['course_code'] . '" AND year_level=' . $data['year_level'] . ' AND section_number=' . $data['section_number']
             );
@@ -21,9 +21,11 @@ class Timetable_model extends CI_Model {
         //if may record
         if($records) {
             return false;
-        }
+        }*/
 
-        $this->db->insert('section', $data);
+        
+
+        $this->db->insert('schedules', $data);
         return true;
     }
 
@@ -32,6 +34,72 @@ class Timetable_model extends CI_Model {
         $query = $this->db->query('SELECT * FROM schedules WHERE userid='.$this->session->userdata('userid'));
         return $query->result();
     }
+
+    public function list_course() {
+        $query = $this->db->query('SELECT course_code FROM course WHERE userid='.$this->session->userdata('userid'));
+        return $query->result();
+    }    
+
+    public function list_level() {
+        $query = $this->db->query('SELECT year_level FROM section WHERE userid='.$this->session->userdata('userid'));
+        return $query->result();
+    }   
+
+    public function list_section() {
+        $query = $this->db->query('SELECT section_number FROM section WHERE userid='.$this->session->userdata('userid'));
+        return $query->result();
+    }
+
+    public function list_room() {
+        $query = $this->db->query('SELECT room_name FROM room WHERE userid='.$this->session->userdata('userid'));
+        return $query->result();
+    } 
+
+    public function list_subject() {
+        $query = $this->db->query('SELECT subject_code FROM all_subjects WHERE userid='.$this->session->userdata('userid'));
+        return $query->result();
+    } 
+
+    public function list_semester() {
+
+        $query = $this->db->query('SELECT semester FROM curriculum WHERE userid='.$this->session->userdata('userid') . ' ORDER BY curriculum_year DESC');
+        return $query->result();
+    }
+
+    public function list_year() {
+
+        $query = $this->db->query('SELECT curriculum_year FROM curriculum WHERE userid='.$this->session->userdata('userid') . ' ORDER BY curriculum_year DESC');
+        return $query->result();
+    }
+
+    public function list_instructor() {
+        $query = $this->db->query('SELECT instructor_name FROM instructor WHERE userid='.$this->session->userdata('userid'));
+        return $query->result();
+    } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function list_section_course() {
 
