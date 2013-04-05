@@ -22,6 +22,7 @@ The application will be able to help manage:
 
 ## Installation
 * The MySQL database is located at the db directory `db/schedulebox.sql`
+* The default account info for the project is `admin` and `1234`
 
 ## Found A Bug?
 
