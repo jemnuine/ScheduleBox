@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 04, 2013 at 03:07 PM
+-- Generation Time: Apr 05, 2013 at 02:55 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -35,7 +35,14 @@ CREATE TABLE IF NOT EXISTS `all_subjects` (
   PRIMARY KEY (`subject_id`),
   KEY `FK_subjects_subj_code` (`subject_code`),
   KEY `fk_all_subjects_users1_idx` (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `all_subjects`
+--
+
+INSERT INTO `all_subjects` (`subject_id`, `subject_code`, `subject_name`, `units`, `userid`) VALUES
+(4, 'INTE3013', 'System Analysis and Design', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -81,8 +88,7 @@ CREATE TABLE IF NOT EXISTS `course` (
 --
 
 INSERT INTO `course` (`course_id`, `course_desc`, `department_desc`, `userid`, `course_code`) VALUES
-(10, 'Education Major in Math', 'College of Education', 1, 'BSE MT'),
-(11, 'Industrial Engineering', 'College of Engineering', 1, 'BSIE');
+(10, 'Education Major in Math', 'College of Education', 1, 'BSE MT');
 
 -- --------------------------------------------------------
 
@@ -112,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `curriculum` (
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`curriculum_id`),
   KEY `fk_curriculum_users1_idx` (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
 
 --
 -- Dumping data for table `curriculum`
@@ -157,8 +163,7 @@ CREATE TABLE IF NOT EXISTS `department` (
 INSERT INTO `department` (`department_id`, `department_code`, `department_desc`, `userid`) VALUES
 (6, 'BSIEE', 'Industrial Engineering', 18),
 (7, 'COE', 'College of Engot', 18),
-(26, 'CoEd', 'College of Education', 1),
-(28, 'CoE', 'College of Engineering', 1);
+(26, 'CoEd', 'College of Education', 1);
 
 -- --------------------------------------------------------
 
@@ -167,13 +172,21 @@ INSERT INTO `department` (`department_id`, `department_code`, `department_desc`,
 --
 
 CREATE TABLE IF NOT EXISTS `instructor` (
-  `instructor_id` int(11) NOT NULL,
+  `instructor_id` int(11) NOT NULL AUTO_INCREMENT,
   `instructor_name` varchar(100) NOT NULL,
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`instructor_id`),
   UNIQUE KEY `instructor_name` (`instructor_name`),
   KEY `fk_instructor_users1_idx` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `instructor`
+--
+
+INSERT INTO `instructor` (`instructor_id`, `instructor_name`, `userid`) VALUES
+(1, 'Jodi', 1),
+(2, 'Ruben', 1);
 
 -- --------------------------------------------------------
 
@@ -189,7 +202,15 @@ CREATE TABLE IF NOT EXISTS `room` (
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`room_id`),
   KEY `fk_room_users1_idx` (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`room_id`, `room_name`, `room_capacity`, `room_type`, `userid`) VALUES
+(6, 'A69', 50, 'Laboratory Room', 1),
+(7, 'B3', 45, 'Laboratory Room', 1);
 
 -- --------------------------------------------------------
 
@@ -263,7 +284,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `displayname` varchar(45) NOT NULL,
   PRIMARY KEY (`userid`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `users`
@@ -278,7 +299,8 @@ INSERT INTO `users` (`userid`, `username`, `password`, `displayname`) VALUES
 (15, 'yeah', '81dc9bdb52d04dc20036dbd8313ed055', 'yeah'),
 (16, 'asdf', '81dc9bdb52d04dc20036dbd8313ed055', 'asdf'),
 (17, '1234', '81dc9bdb52d04dc20036dbd8313ed055', '1234'),
-(18, 'denneh', '81dc9bdb52d04dc20036dbd8313ed055', 'Dannah');
+(18, 'denneh', '81dc9bdb52d04dc20036dbd8313ed055', 'Dannah'),
+(19, 'pjong', 'cbee5d0e698beb80b8de06feb78cf53a', 'Paul John');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
