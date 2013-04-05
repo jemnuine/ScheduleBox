@@ -52,42 +52,26 @@
 					<b class="pull-right">&nbsp;</b>
 					<button id="addbutton" class="btn btn-success" type="button"><i class="icon-plus icon-white"></i> New</button>
 					<b class="pull-right">&nbsp;</b>
-					<button class="btn btn-danger pull-right" type="button"><i class="icon-remove icon-white"></i> Delete All</button>
+					<button class="delall btn btn-danger pull-right" type="button"><i class="icon-remove icon-white"></i> Delete All</button>
 					<table class="table table-striped">
 						<thead>
 							<td>Instructor Name</td>
 							
 						</thead>
-						<tr>
+						<?php if(isset($records)) : foreach($records as $row) : ?>
+							<tr>
+								<td><?php echo $row->instructor_name;?></td>
+								<td class="">
+									<a id="<?php echo $row->instructor_id;?>" style="cursor:pointer;" class="deletebutton pull-right"><i class="icon-trash"></i></a>
+									<a id="<?php echo $row->instructor_id;?>" style="cursor:pointer;" class="editbutton pull-right"><i class="icon-pencil"></i></a>	
+								</td>
+							</tr>
+							<?php endforeach;?>
 
-							
-							<td>
-								Sample
-							</td>
-							<td class="">
-								<a href="" class="pull-right"><i class="icon-trash"></i></a>
-								<a href="" class="pull-right"><i class="icon-pencil"></i></a>
-								
-							</td>
-
-						</tr>
-						<tr>
-
-							
-							<td>
-								Sample
-							</td>
-							<td class="">
-								<a href="" class="pull-right"><i class="icon-trash"></i></a>
-								<a href="" class="pull-right"><i class="icon-pencil"></i></a>
-								
-							</td>
-
-						</tr>
-
-
+						<?php endif; ?>
 
 					</table>
+					<?php if(!isset($records)) echo '<div class="alert alert-info" align="center">No Records Yet!</div>'?>
 				</div>
 
 				<div class="span3">
@@ -166,3 +150,132 @@
 			</form>
 		</div>
 		<!-- Add Semester Modal -->
+
+		<!-- Edit Section Modal -->
+		<div id="modalEditSubject" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+				<h3 id="myModalLabel">Edit Subject </h3>
+			</div>
+			<!-- Modal Header -->
+			<?php if(!is_null($add_subject_error_msg)) echo $add_subject_error_msg;?>  
+			<br/>
+			<form action='<?php echo base_url();?>index.php/subjects/list_edit_subject' method='post' name='register'>
+				<!-- Modal Content -->
+				<table cellpadding="0" align=center>
+					<tr>
+						<td>Subject Code: </td>
+						<td>&nbsp;</td>
+						<td><input type='text' name='editCode' id='editCode' size='25' /></td>
+					</tr>
+					<tr>
+						<td>Subject Name: </td>
+						<td>&nbsp;</td>
+						<td><input type='text' name='editSubject' id='editSubject' size='25' /></td>
+					</tr>
+					<tr>
+						<td>Number of Units: </td>
+						<td>&nbsp;</td>
+						<td><input type='text' name='editUnits' id='editUnits' size='25' /></td>
+					</tr>
+
+				</table>
+
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<table cellpadding="0" align=center>
+						<tr>
+							<td></td>
+							<td width="400px" style="text-align:center">
+								<input type="submit" value="Save" class="btn btn-warning btn-large"/>
+								<a class="btn btn-primary btn-large" data-dismiss="modal" aria-hidden="true">Cancel</a>
+							</td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+				<!-- Modal Footer -->
+			</form>
+		</div>
+		<!-- Edit Course Modal -->
+
+		<!-- Delete Course Modal -->
+		<div id="modalConfirm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+				<h3 id="myModalLabel">Confirm</h3>
+			</div>
+			<!-- Modal Header -->
+			<br/>
+			<table cellpadding="0" align=center>
+				<tr>
+					<td>&nbsp;</td>
+
+					<td>
+						Are you sure you want to delete this data?
+					</td>	
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+			<br/>
+			<!-- Modal Footer -->
+			<div class="modal-footer">
+				<table cellpadding="0" align=center>
+					<tr>
+						<td></td>
+						<td width="400px" style="text-align:center">
+							
+							<a id="triggerdelete" class="btn btn-warning btn-large" data-dismiss="modal" aria-hidden="true">Delete</a>
+
+							<a class="btn btn-primary btn-large" data-dismiss="modal" aria-hidden="true">Cancel</a>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<!-- Modal Footer -->	
+		</div>
+		<!-- Delete Course Modal -->
+
+		<!-- Delete All -->
+		<div id="modalConfirm2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+				<h3 id="myModalLabel">Warning!</h3>
+			</div>
+			<!-- Modal Header -->
+			<br/>
+			<table cellpadding="0" align=center>
+				<tr>
+					<td>&nbsp;</td>
+
+					<td>
+						You are about to delete all records. Do you want to continue this operation?
+					</td>	
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+			<br/>
+			<!-- Modal Footer -->
+			<div class="modal-footer">
+				<table cellpadding="0" align=center>
+					<tr>
+						<td></td>
+						<td width="400px" style="text-align:center">
+							
+							<a id="triggerdelall" class="btn btn-warning btn-large" data-dismiss="modal" aria-hidden="true">Delete</a>
+
+							<a class="btn btn-primary btn-large" data-dismiss="modal" aria-hidden="true">Cancel</a>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<!-- Modal Footer -->	
+		</div>
+		<!-- Delete All -->
