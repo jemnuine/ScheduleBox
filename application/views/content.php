@@ -23,6 +23,68 @@
 		</div>
 		<!-- Welcome -->
 
+		<div class="container">
+		  <div class="marketing">
+		      <h1>Built with.</h1>
+		      <div class="row-fluid">
+		          <div class="span4">
+		            <img class="marketing-img" src="<?php echo base_url();?>img/bootstrap2.png">
+		            <h2>Bootstrap.</h2>
+		            <p>Sleek, intuitive, and powerful front-end framework for faster and easier web development.</p>
+		          </div>
+		          <div class="span4">
+		            <img class="marketing-img" src="<?php echo base_url();?>img/codeigniter.png">
+		            <h2>CodeIgniter.</h2>
+		            <p>A Fully Baked PHP Framework CodeIgniter is a proven, agile & open PHP web application framework with a small footprint. It is powering the next generation of web apps.</p>
+		          </div>
+		          <div class="span4">
+		            <img class="marketing-img" src="<?php echo base_url();?>img/fontawesome.png">
+		            <h2>Font Awesome.</h2>
+		            <p>The iconic font designed for use with Twitter Bootstrap.</p>
+		          </div>
+		      </div>
+		      <hr class="soften">
+		      <img src="<?php echo base_url();?>img/logo.png" class="icon-spin">
+		      <h1>Features.</h1>
+		          <p class="marketing-byline">SchedulesBox is an Online class schedule you will fall in love with.</p>
+		      <div class="row-fluid"> 
+		          <div class="span4">
+		            <img class="marketing-img" src="<?php echo base_url();?>img/1.png">
+		            <p>Create a complete class schedule.</p>
+		          </div>
+		          <div class="span4">
+		            <img class="marketing-img" src="<?php echo base_url();?>img/2.png">
+		            <p>Manage rooms efficiently.</p>
+		          </div>
+		          <div class="span4">
+		            <img class="marketing-img" src="<?php echo base_url();?>img/3.png">
+		            <p>Report generation (class schedule, faculty schedule, room schedule, etc).</p>
+		          </div>
+		      </div>
+		      <footer>
+				  <div class="container">
+					<div class="row">
+					  <div class="span6">
+						<h2>Contact</h2>
+						<ul class="icons">
+						  <li><i class="icon-envelope"></i> Team Email: <a href="mailto:2010-SOEN-SR-0@groups.live.com">2010-SOFTENG-SR-0</a></li>
+						  <li><i class="icon-github"></i> Github: <a href="https://github.com/jemnuine" target="_blank">Repo</a></li>
+						</ul>
+					  </div>
+					  <div class="span6">
+						<h2>ScheduleBox</h2>
+						<p>
+						  Copyright &copy; 2013
+						</p>
+					  </div>
+					</div>
+				  </div>
+				</footer>
+
+
+		  
+		</div>
+
 		<!-- Modal -->
 		<div id="modalLogin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<!-- Modal Header -->
@@ -113,3 +175,4 @@
 			</form>
 		</div>
 		<!-- Modal -->
+

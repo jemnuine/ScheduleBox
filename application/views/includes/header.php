@@ -3,6 +3,7 @@
 	<head>
 		<title>ScheduleBox</title>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>styles/default.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>styles/docs.css">
 		
 	    <link rel="stylesheet" href="<?php echo base_url();?>styles/assets/css/font-awesome.css">
 
