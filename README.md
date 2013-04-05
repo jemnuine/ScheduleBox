@@ -20,9 +20,12 @@ The application will be able to help manage:
 * You can grab my latest progress [here](https://github.com/jemnuine/ScheduleBox/archive/master.zip).
 * Or, you can Clone the repo: `git clone https://github.com/jemnuine/ScheduleBox.git`.
 
+## Installation
+* The MySQL database is located at the db directory `db/schedulebox.sql`
+
 ## Found A Bug?
 
-Oh. There's a lot of them! Email me at `jemnuineuron@live.com`
+Oh. There's a lot of them! Please help me get rid of them. Email me at `jemnuineuron@live.com`
 
 ## Suggestions and Comments? 
 
