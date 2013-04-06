@@ -65,9 +65,6 @@ class Schedules extends CI_Controller {
             //color alternate 
             $color = rand(0,4);
             $data['rand'] = $color;
-            /*if($query = $this->timetable_model->list_section_course()) {
-                $data['record'] = $query;
-            }*/
 
 			$this->load->view('includes/nocache');
 	        $this->load->view('schedules_view', $data);
@@ -123,7 +120,7 @@ class Schedules extends CI_Controller {
         
     }
 
-    public function list_edit_section (
+    public function list_edit_schedule (
             $add_schedule_error_msg = NULL, 
             $add_schedule_error_action = NULL, 
             $reg_error_msg = NULL
@@ -136,6 +133,7 @@ class Schedules extends CI_Controller {
 
 
         $this->load->model('timetable_model');
+
         //kinuha lang ung department id galing sa view
         $section_id = $this->input->post('dataid');
 
@@ -186,7 +184,7 @@ class Schedules extends CI_Controller {
         }
     }
 
-    public function delete_section ($id = NULL) {
+    public function delete_schedule ($id = NULL) {
 
         $this->load->model('timetable_model');
         $this->timetable_model->delete_section($id);
@@ -194,7 +192,7 @@ class Schedules extends CI_Controller {
         return;
     }
 
-    public function delete_all_section () {
+    public function delete_all_schedule () {
         $this->load->model('timetable_model');
         $this->timetable_model->delete_all_section();
         redirect(base_url().'index.php/sections');
