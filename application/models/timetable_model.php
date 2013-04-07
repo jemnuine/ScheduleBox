@@ -164,12 +164,12 @@ class Timetable_model extends CI_Model {
         }
     }
 
-    public function delete_section($id) {
+    public function delete_schedule($id) {
         
         if($id != '') {
 
-            $this->db->where('section_id',$id);
-            $this->db->delete('section');
+            $this->db->where('schedule_id',$id);
+            $this->db->delete('schedules');
 
 
             /*$query = $this->db->query('SELECT course_code FROM course WHERE userid='.$this->session->userdata('userid') . ' AND course_id=' . $id);
@@ -181,7 +181,7 @@ class Timetable_model extends CI_Model {
 
             //cascade deletion
             $this->db->where('course_code', $a);
-            $this->db->delete('section');*/
+            $this->db->delete('schedule');*/
 
         } else {
 
@@ -189,9 +189,9 @@ class Timetable_model extends CI_Model {
         }
     }
 
-    public function delete_all_section() {
+    public function delete_all_schedule() {
         $this->db->where('userid', $this->session->userdata('userid'));
-        $this->db->delete('section'); 
+        $this->db->delete('schedules'); 
     }
 
     /********** End course Functions **********/

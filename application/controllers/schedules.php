@@ -188,14 +188,14 @@ class Schedules extends CI_Controller {
 
         $this->load->model('timetable_model');
         $this->timetable_model->delete_section($id);
-        redirect(base_url().'index.php/sections');
+        redirect(base_url().'index.php/schedules');
         return;
     }
 
     public function delete_all_schedule () {
         $this->load->model('timetable_model');
         $this->timetable_model->delete_all_section();
-        redirect(base_url().'index.php/sections');
+        redirect(base_url().'index.php/schedules');
         return;
     }
 
