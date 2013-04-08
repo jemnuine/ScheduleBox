@@ -6,7 +6,7 @@ class Timetable_model extends CI_Model {
         parent:: __construct();
     }
 
-     /********** Begin Section Functions **********/
+     /********** Begin Schedule Functions **********/
 
     public function add_schedule($data) {
         
@@ -194,5 +194,5 @@ class Timetable_model extends CI_Model {
         $this->db->delete('schedules'); 
     }
 
-    /********** End course Functions **********/
+    /********** End Schedule Functions **********/
 }

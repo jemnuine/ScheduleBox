@@ -94,7 +94,7 @@ class Instructor_model extends CI_Model {
 
         } else {
 
-            echo 'Oops! Something is wrong in deleting course :(';
+            echo 'Oops! Something is wrong in deleting instructor :(';
         }
     }
 

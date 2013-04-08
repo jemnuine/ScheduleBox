@@ -125,5 +125,5 @@ class Course_model extends CI_Model {
         $this->db->delete('course'); 
     }
 
-    /********** End course Functions **********/
+    /********** End Course Functions **********/
 }

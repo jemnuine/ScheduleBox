@@ -6,7 +6,7 @@ class Subject_model extends CI_Model {
         parent:: __construct();
     }
 
-     /********** Begin Section Functions **********/
+     /********** Begin Subject Functions **********/
 
     public function add_subject($data) {
         
@@ -119,5 +119,5 @@ class Subject_model extends CI_Model {
         $this->db->delete('all_subjects'); 
     }
 
-    /********** End subject Functions **********/
+    /********** End Subject Functions **********/
 }

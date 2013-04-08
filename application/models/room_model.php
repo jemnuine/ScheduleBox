@@ -117,7 +117,7 @@ class Room_model extends CI_Model {
 
         } else {
 
-            echo 'Oops! Something is wrong in deleting course :(';
+            echo 'Oops! Something is wrong in deleting Room :(';
         }
     }
 
@@ -126,5 +126,5 @@ class Room_model extends CI_Model {
         $this->db->delete('room'); 
     }
 
-    /********** End course Functions **********/
+    /********** End Room Functions **********/
 }

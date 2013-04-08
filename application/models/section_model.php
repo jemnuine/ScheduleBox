@@ -126,5 +126,5 @@ class Section_model extends CI_Model {
         $this->db->delete('section'); 
     }
 
-    /********** End course Functions **********/
+    /********** End Section Functions **********/
 }
